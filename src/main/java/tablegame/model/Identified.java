@@ -3,7 +3,8 @@ package tablegame.model;
 import java.io.Serializable;
 
 /**
- * Интерфейс идентифицируемых объектов.
+ *  Interface of initialization objects
+ * @param <PK>
  */
 public interface Identified<PK extends Serializable> extends Serializable {
 
