@@ -10,14 +10,14 @@ import java.util.UUID;
  */
 public interface UserDAO extends GenericDAO<User, UUID>{
     /**
-     * Получить
+     * Получить данные по юзер по логину
      * @param name
      * @return
      */
     User findPlayerByLogin(String name);
 
     /**
-     *  Получить все роли у данного юзера по логину.
+     *  Получить роль у данного юзера по логину.
      * @param name
      * @return
      */

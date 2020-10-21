@@ -8,11 +8,15 @@ import tablegame.model.User;
  */
 public interface UserService {
     /**
+     * добавить пользователя
+     *
      * @param user
      */
     void addUser(User user);
 
     /**
+     *  добавить роль
+     *
      * @param user
      */
     void addRole(User user, Role role);
