@@ -8,9 +8,7 @@ import tablegame.service.UserServiceImpl;
 import java.lang.reflect.Method;
 
 /**
- * CustomAsyncExceptionHandler.
- *
- * @author Ilya_Sukhachev
+ * @author nemykin 20.10.2020
  */
 public class CustomAsyncExceptionHandler
         implements AsyncUncaughtExceptionHandler {
