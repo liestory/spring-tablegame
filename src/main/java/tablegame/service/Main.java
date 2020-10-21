@@ -1,7 +1,10 @@
 package tablegame.service;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
+import tablegame.config.SpringConfig;
 import tablegame.model.Game;
 import tablegame.model.Role;
 import tablegame.model.User;
@@ -14,13 +17,14 @@ import java.util.UUID;
 /**
  * @author nemykin 13.10.2020
  */
+@Component
 public class Main {
     public static void main(String[] args) {
         ApplicationContext context =
-                new ClassPathXmlApplicationContext("spring-context.xml");
+                new AnnotationConfigApplicationContext(SpringConfig.class);
 
-        UserService userService = (UserService) context.getBean("userService");
-        GameService gameService = (GameService) context.getBean("gameService");
+        UserService userService = (UserService) context.getBean("userServiceImpl");
+        GameService gameService = (GameService) context.getBean("gameServiceImpl");
 
         User user = new User();
         user.setId(UUID.randomUUID());
