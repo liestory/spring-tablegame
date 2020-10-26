@@ -2,11 +2,9 @@ package tablegame.service;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import tablegame.dao.GameDAO;
-import tablegame.dao.UserDAO;
 import tablegame.model.Game;
 
 /**
@@ -20,7 +18,7 @@ public class GameServiceImpl implements GameService {
 
     private GameDAO gameDAO;
 
-    public GameServiceImpl(@Qualifier("gameDAOImpl")GameDAO gameDAO) {
+    public GameServiceImpl(GameDAO gameDAO) {
         log.info("create game service");
         this.gameDAO = gameDAO;
     }
