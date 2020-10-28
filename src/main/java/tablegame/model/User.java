@@ -11,6 +11,7 @@ public class User implements Identified<UUID> {
 
     private UUID id;
     private String username;
+    private String password;
     private UserStatus userStatus;
     private Role role;
 
@@ -47,4 +48,11 @@ public class User implements Identified<UUID> {
         this.userStatus = userStatus;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
