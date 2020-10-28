@@ -15,6 +15,18 @@ public class User implements Identified<UUID> {
     private UserStatus userStatus;
     private Role role;
 
+    public User() {
+        this.role = Role.PLAYER;
+        this.userStatus = UserStatus.STATUS_ACTIVED;
+    }
+
+    public User(UUID id, String username, String password) {
+        this();
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
+
     @Override
     public UUID getId() {
         return null;

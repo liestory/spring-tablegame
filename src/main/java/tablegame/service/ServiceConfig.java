@@ -20,4 +20,9 @@ public class ServiceConfig {
     public GameService gameServiceImpl(GameDAO gameDAO) {
         return new GameServiceImpl(gameDAO);
     }
+
+    @Bean
+    public RegistrationService registrationService(UserDAO userDAO) {
+        return new RegistrationServiceImpl(userDAO);
+    }
 }

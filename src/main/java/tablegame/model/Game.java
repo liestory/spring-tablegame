@@ -17,6 +17,12 @@ public class Game implements Identified<Long> {
         this.users = new HashSet<>();
     }
 
+    public Game(Long id, String gameName){
+        this();
+        this.id = id;
+        this.gameName = gameName;
+    }
+
     @Override
     public Long getId() {
         return id;
