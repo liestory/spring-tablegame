@@ -32,7 +32,7 @@ public class RegistrationUserController {
     }
 
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/user", method = RequestMethod.POST)
     public UserDto userRegistration(@Validated @RequestBody UserDto userDto, BindingResult result
             /*, HttpServletRequest httpServletRequest*/) {
         if (result.hasErrors()) {
@@ -44,7 +44,7 @@ public class RegistrationUserController {
         return userDto;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/game", method = RequestMethod.POST)
     public GameDto gameRegistration(@Validated @RequestBody GameDto gameDto, BindingResult result
             /*, HttpServletRequest httpServletRequest*/) {
         if (result.hasErrors()) {
