@@ -3,6 +3,7 @@ package tablegame.service;
 import org.springframework.context.annotation.Bean;
 import tablegame.dao.GameDAO;
 import tablegame.dao.UserDAO;
+import tablegame.model.Game;
 
 /**
  * опивание свяки сервисов
@@ -12,12 +13,12 @@ import tablegame.dao.UserDAO;
 public class ServiceConfig {
 
     @Bean
-    public UserService userServiceImpl(UserDAO userDAO) {
+    public UserService userService(UserDAO userDAO) {
         return new UserServiceImpl(userDAO);
     }
 
     @Bean
-    public GameService gameServiceImpl(GameDAO gameDAO) {
+    public GameService gameService(GameDAO gameDAO) {
         return new GameServiceImpl(gameDAO);
     }
 
@@ -25,4 +26,11 @@ public class ServiceConfig {
     public RegistrationService registrationService(UserDAO userDAO) {
         return new RegistrationServiceImpl(userDAO);
     }
+
+
+    @Bean
+    public CreateGameService createGameService(GameDAO gameDAO) {
+        return new CreateGameServiceImpl(gameDAO);
+    }
 }
+

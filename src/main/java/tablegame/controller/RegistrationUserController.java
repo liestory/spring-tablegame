@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import tablegame.controller.dto.GameDto;
 import tablegame.controller.dto.UserDto;
+import tablegame.service.CreateGameService;
 import tablegame.service.RegistrationService;
 
 /**
@@ -23,14 +24,13 @@ public class RegistrationUserController {
     private static final Logger logger = LogManager.getLogger(RegistrationUserController.class.getName());
 
     private RegistrationService registrationService;
-//    private UserDtoValidator userDtoValidator;
+    private CreateGameService createGameService;
 
     @Autowired
-    public RegistrationUserController(RegistrationService registrationService) {
+    public RegistrationUserController(RegistrationService registrationService, CreateGameService createGameService) {
         this.registrationService = registrationService;
-//        this.userDtoValidator = userDtoValidator;
+        this.createGameService = createGameService;
     }
-
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public UserDto userRegistration(@Validated @RequestBody UserDto userDto, BindingResult result
@@ -51,8 +51,7 @@ public class RegistrationUserController {
             gameDto.setErrors(result.getAllErrors());
             return gameDto;
         }
-
-        registrationService.regGame(gameDto);
+        createGameService.regGame(gameDto);
         return gameDto;
     }
 }

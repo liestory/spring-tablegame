@@ -2,6 +2,7 @@ package tablegame.service;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Service;
 import tablegame.controller.dto.GameDto;
 import tablegame.controller.dto.UserDto;
 import tablegame.dao.GameDAO;
@@ -14,17 +15,13 @@ import java.util.UUID;
 /**
  * @author Asus 28.10.2020
  */
+@Service
 public class RegistrationServiceImpl implements RegistrationService {
     private static final Logger logger = LogManager.getLogger(RegistrationServiceImpl.class.getName());
     private UserDAO userDao;
-    private GameDAO gameDAO;
 
     public RegistrationServiceImpl(UserDAO userDao) {
         this.userDao = userDao;
-    }
-
-    public RegistrationServiceImpl(GameDAO gameDAO) {
-        this.gameDAO = gameDAO;
     }
 
     @Override
@@ -35,12 +32,5 @@ public class RegistrationServiceImpl implements RegistrationService {
         return userDto;
     }
 
-    @Override
-    public GameDto regGame(GameDto gameDto) {
-        Game game = new Game(gameDto.getId(), gameDto.getGameName());
-        gameDAO.save(game);
-        gameDto.setId(game.getId());
-        return gameDto;
-    }
 
 }

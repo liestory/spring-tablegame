@@ -10,5 +10,4 @@ public interface RegistrationService {
 
     UserDto regUser(UserDto userDto);
 
-    GameDto regGame(GameDto gameDto);
 }
