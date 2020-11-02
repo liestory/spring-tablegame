@@ -7,6 +7,8 @@ import tablegame.model.Game;
  */
 public interface GameService {
     /**
+     * добавить игру
+     *
      * @param game
      */
     void addGame(Game game);

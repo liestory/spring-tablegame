@@ -1,6 +1,8 @@
 package tablegame.model;
 
 /**
+ *  статусы пользователей на играх
+ *
  * @author nemykin 14.10.2020
  */
 public enum UserStatus {
