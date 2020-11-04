@@ -6,9 +6,10 @@ import tablegame.model.User;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.UUID;
 
 /**
+ * данные об игре
+ *
  * @author nemykin 28.10.2020
  */
 public class GameDto {
@@ -16,9 +17,24 @@ public class GameDto {
     public GameDto() {
     }
 
+    /**
+     * id игры
+     */
     private Long id;
+
+    /**
+     * название игры
+     */
     private String gameName;
+
+    /**
+     * список пользователей
+     */
     private Set<User> users;
+
+    /**
+     * список ошибок
+     */
     private List<ObjectError> errors;
 
     public Long getId() {

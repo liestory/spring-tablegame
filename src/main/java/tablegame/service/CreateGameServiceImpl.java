@@ -2,6 +2,7 @@ package tablegame.service;
 
 import org.springframework.stereotype.Service;
 import tablegame.controller.dto.GameDto;
+import tablegame.controller.dto.UserDto;
 import tablegame.dao.GameDAO;
 import tablegame.model.Game;
 
@@ -18,10 +19,12 @@ public class CreateGameServiceImpl implements CreateGameService {
     }
 
     @Override
-    public GameDto regGame(GameDto gameDto) {
+    public GameDto regGame(UserDto userDto, GameDto gameDto) {
         Game game = new Game(gameDto.getId(), gameDto.getGameName());
         gameDAO.save(game);
         gameDto.setId(game.getId());
+        //TODO: надо продумать как верно сделать выставления админом того, кто регистрирует игру
+        //userDto.getUsername();
         return gameDto;
     }
 }

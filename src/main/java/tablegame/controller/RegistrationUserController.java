@@ -13,6 +13,7 @@ import tablegame.controller.dto.GameDto;
 import tablegame.controller.dto.UserDto;
 import tablegame.service.CreateGameService;
 import tablegame.service.RegistrationService;
+import tablegame.validator.UserDtoValidator;
 
 /**
  * @author nemykin 28.10.2020
@@ -25,11 +26,14 @@ public class RegistrationUserController {
 
     private RegistrationService registrationService;
     private CreateGameService createGameService;
+    private UserDtoValidator userDtoValidator;
 
     @Autowired
-    public RegistrationUserController(RegistrationService registrationService, CreateGameService createGameService) {
+    public RegistrationUserController(RegistrationService registrationService, CreateGameService createGameService,
+                                      UserDtoValidator userDtoValidator) {
         this.registrationService = registrationService;
         this.createGameService = createGameService;
+        this.userDtoValidator = userDtoValidator;
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
@@ -39,19 +43,19 @@ public class RegistrationUserController {
             userDto.setErrors(result.getAllErrors());
             return userDto;
         }
-
+        userDtoValidator.validate(userDto);
         registrationService.regUser(userDto);
         return userDto;
     }
 
     @RequestMapping(value = "/game", method = RequestMethod.POST)
-    public GameDto gameRegistration(@Validated @RequestBody GameDto gameDto, BindingResult result
+    public GameDto gameRegistration(@Validated @RequestBody UserDto userDto, GameDto gameDto, BindingResult result
             /*, HttpServletRequest httpServletRequest*/) {
         if (result.hasErrors()) {
             gameDto.setErrors(result.getAllErrors());
             return gameDto;
         }
-        createGameService.regGame(gameDto);
+        createGameService.regGame(userDto, gameDto);
         return gameDto;
     }
 }

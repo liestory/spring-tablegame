@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import tablegame.dao.UserDAO;
 import tablegame.model.Role;
 import tablegame.model.User;
+import tablegame.model.UserStatus;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
@@ -41,5 +42,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addRole(User user, Role role) {
         user.setRole(role);
+    }
+
+    @Override
+    public void changeRole(User user, Role role) {
+        user.setRole(role);
+    }
+
+    @Override
+    public void changeStatus(User user, UserStatus status) {
+        user.setUserStatus(status);
     }
 }
