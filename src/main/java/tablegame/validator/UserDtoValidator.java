@@ -6,8 +6,6 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 import tablegame.controller.dto.UserDto;
 
-import java.util.Locale;
-
 /**
  * TODO: мало ли осилю валидацию. пока просто зачаток
  *
