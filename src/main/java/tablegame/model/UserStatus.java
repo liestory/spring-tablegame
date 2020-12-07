@@ -8,7 +8,7 @@ package tablegame.model;
 public enum UserStatus {
     STATUS_ACTIVED("Активен"),
     STATUS_OBSERVER("Наблюдатель"),
-    STATUS_LOCKED("Заблокирован");;
+    STATUS_LOCKED("Заблокирован");
 
     private String description;
 

@@ -6,6 +6,8 @@ import tablegame.model.Role;
 import java.util.UUID;
 
 /**
+ * методы работ с юзером
+ *
  * @author nemykin 14.10.2020
  */
 public interface UserDAO extends GenericDAO<User, UUID>{

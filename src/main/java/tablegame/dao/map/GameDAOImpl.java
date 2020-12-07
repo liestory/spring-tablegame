@@ -3,8 +3,10 @@ package tablegame.dao.map;
 import org.springframework.stereotype.Repository;
 import tablegame.dao.GameDAO;
 import tablegame.model.Game;
+import tablegame.model.User;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author Asus 14.10.2020
@@ -24,4 +26,10 @@ public class GameDAOImpl extends AbstractDao<Game, Long> implements GameDAO {
         }
         return null;
     }
+
+    @Override
+    public void addUserForGame(Game gameName, List<User> user) {
+        gameName.getUsers().addAll(user);
+    }
+
 }
