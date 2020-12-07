@@ -7,6 +7,11 @@ plugins {
 group 'spring-tablegame'
 version '1.0-SNAPSHOT'
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
 repositories {
     mavenCentral()
 }
@@ -34,4 +39,7 @@ dependencies {
     //jackson
     implementation 'com.fasterxml.jackson.core:jackson-core:2.11.3'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.3'
+
+    //vvalidation-api
+    compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 }

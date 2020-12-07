@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- * данные об игре
+ * объекты для юзера получаемые с контролеров
  *
  * @author nemykin 28.10.2020
  */
