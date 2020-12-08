@@ -1,7 +1,6 @@
 package tablegame.controller;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -20,9 +19,8 @@ import tablegame.validator.UserDtoValidator;
  */
 @RestController
 @RequestMapping("/api/registration")
+@Slf4j
 public class RegistrationUserController {
-
-    private static final Logger logger = LogManager.getLogger(RegistrationUserController.class.getName());
 
     private RegistrationService registrationService;
     private CreateGameService createGameService;
@@ -37,8 +35,7 @@ public class RegistrationUserController {
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public UserDto userRegistration(@Validated @RequestBody UserDto userDto, BindingResult result
-            /*, HttpServletRequest httpServletRequest*/) {
+    public UserDto userRegistration(@Validated @RequestBody UserDto userDto, BindingResult result) {
         if (result.hasErrors()) {
             userDto.setErrors(result.getAllErrors());
             return userDto;
@@ -49,8 +46,7 @@ public class RegistrationUserController {
     }
 
     @RequestMapping(value = "/game", method = RequestMethod.POST)
-    public GameDto gameRegistration(@Validated @RequestBody UserDto userDto, GameDto gameDto, BindingResult result
-            /*, HttpServletRequest httpServletRequest*/) {
+    public GameDto gameRegistration(@Validated @RequestBody UserDto userDto, GameDto gameDto, BindingResult result) {
         if (result.hasErrors()) {
             gameDto.setErrors(result.getAllErrors());
             return gameDto;

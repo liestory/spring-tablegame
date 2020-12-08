@@ -12,6 +12,10 @@ import tablegame.controller.dto.UserDto;
 import tablegame.service.UserService;
 
 /**
+ * Контролел управления юзерами в рамках 1 игры
+ * TODO: поидее должна быть логика упраления админом определнной game другиеи users
+ *      Пока ее нет и продумываю.
+ *
  * @author nemykin 03.11.2020
  */
 @RestController

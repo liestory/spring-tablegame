@@ -1,5 +1,6 @@
 package tablegame.model;
 
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -14,6 +15,7 @@ public class User implements Identified<UUID> {
     private String password;
     private UserStatus userStatus;
     private Role role;
+    private Map<Character, Game> characterGameMap;
 
     public User() {
         this.role = Role.PLAYER;
@@ -66,5 +68,13 @@ public class User implements Identified<UUID> {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Map<Character, Game> getCharacterGameMap() {
+        return characterGameMap;
+    }
+
+    public void setCharacterGameMap(Map<Character, Game> characterGameMap) {
+        this.characterGameMap = characterGameMap;
     }
 }

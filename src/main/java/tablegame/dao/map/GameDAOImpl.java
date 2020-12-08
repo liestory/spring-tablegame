@@ -31,5 +31,4 @@ public class GameDAOImpl extends AbstractDao<Game, Long> implements GameDAO {
     public void addUserForGame(Game gameName, List<User> user) {
         gameName.getUsers().addAll(user);
     }
-
 }

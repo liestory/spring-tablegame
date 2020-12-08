@@ -1,5 +1,6 @@
 package tablegame.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import tablegame.controller.dto.GameDto;
 import tablegame.controller.dto.UserDto;
@@ -9,6 +10,7 @@ import tablegame.model.Game;
 /**
  * @author nemykin 29.10.2020
  */
+@Slf4j
 @Service
 public class CreateGameServiceImpl implements CreateGameService {
 

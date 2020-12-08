@@ -40,6 +40,9 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-core:2.11.3'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.3'
 
-    //vvalidation-api
-    compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+    //validation-api
+    implementation 'javax.validation:validation-api:2.0.1.Final'
+
+    //slf4j-api
+    implementation 'org.slf4j:slf4j-api:1.7.30'
 }

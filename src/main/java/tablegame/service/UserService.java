@@ -1,5 +1,8 @@
 package tablegame.service;
 
+import tablegame.model.Character;
+import tablegame.model.CharacteristicsBase;
+import tablegame.model.Game;
 import tablegame.model.Role;
 import tablegame.model.User;
 import tablegame.model.UserStatus;
@@ -30,9 +33,18 @@ public interface UserService {
     void changeRole(User user, Role role);
 
     /**
-     *  изменить статус пользователя пользователю роль
+     * изменить статус пользователя пользователю роль
      *
      * @param user
      */
     void changeStatus(User user, UserStatus status);
+
+    /**
+     * создать персонажа пользователю
+     *
+     * @param user
+     * @param game
+     * @return
+     */
+    void createCharacterByUser(User user, Game game);
 }
