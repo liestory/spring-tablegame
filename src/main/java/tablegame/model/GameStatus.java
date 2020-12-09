@@ -13,6 +13,9 @@ public enum GameStatus {
     PROCESSING("Запущена"),
     FINISHED("Закончена");
 
+    /**
+     * словесное описание статуса
+     */
     private String description;
 
     GameStatus(String description) {
@@ -23,6 +26,13 @@ public enum GameStatus {
         return description;
     }
 
+    /**
+     * получить статус по его описанию
+     * необходимо для мапинга значения приходящих с фронта
+     *
+     * @param desc -  описание состояния
+     * @return
+     */
     public static GameStatus getStatusByDesc(@NotNull String desc) {
         return GameStatus.valueOf(desc);
     }

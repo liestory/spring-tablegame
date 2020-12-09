@@ -3,6 +3,7 @@ package tablegame.service;
 import tablegame.model.Character;
 import tablegame.model.CharacteristicsBase;
 import tablegame.model.Game;
+import tablegame.model.Game;
 import tablegame.model.Role;
 import tablegame.model.User;
 import tablegame.model.UserStatus;
@@ -19,11 +20,11 @@ public interface UserService {
     void addUser(User user);
 
     /**
-     *  добавить роль
+     * добавить роль
      *
      * @param user
      */
-    void addRole(User user, Role role);
+    void addRole(User user, Role role, Game game);
 
     /**
      *  изменить роль пользователю роль

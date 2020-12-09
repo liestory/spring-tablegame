@@ -28,7 +28,11 @@ public class GameDAOImpl extends AbstractDao<Game, Long> implements GameDAO {
     }
 
     @Override
-    public void addUserForGame(Game gameName, List<User> user) {
-        gameName.getUsers().addAll(user);
+    public void addUserForGame(String gameName, List<User> user) {
+        for (Game element : elements.values()) {
+            if (element.getGameName().equals(gameName)) {
+                element.getUsers().addAll(user);
+            }
+        }
     }
 }

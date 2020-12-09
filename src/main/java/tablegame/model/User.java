@@ -1,6 +1,8 @@
 package tablegame.model;
 
 import java.util.Map;
+import java.util.AbstractMap;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -10,15 +12,43 @@ public class User implements Identified<UUID> {
 
     private static final long serialVersionUID = -7931737332645464539L;
 
+    /**
+     * идентификатор пользователя
+     */
     private UUID id;
+
+    /**
+     * логин пользователя
+     */
     private String username;
+
+    /**
+     * пароль пользователя
+     */
     private String password;
+
+    /**
+     * статус игрока
+     * TODO: возможно тоже должен быть привязан к игре
+     */
     private UserStatus userStatus;
     private Role role;
     private Map<Character, Game> characterGameMap;
 
+    /**
+     * роль игрока
+     * ВАЖНО! роль у пользователя существует только в рамках игры.
+     */
+    private Map<Game, Role> role;
+
+    /**
+     * привязка персонажа к игре
+     * ВАЖНО! персонажа у пользователя существует только в рамках игры.
+     */
+    private Map<Game, Character> characterGameMap;
+
     public User() {
-        this.role = Role.PLAYER;
+        this.role = Map.ofEntries(new AbstractMap.SimpleEntry<>(null, Role.PLAYER));
         this.userStatus = UserStatus.STATUS_ACTIVED;
     }
 
@@ -31,7 +61,7 @@ public class User implements Identified<UUID> {
 
     @Override
     public UUID getId() {
-        return null;
+        return id;
     }
 
     public void setId(UUID id) {
@@ -44,14 +74,6 @@ public class User implements Identified<UUID> {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 
     public UserStatus getUserStatus() {
@@ -68,6 +90,22 @@ public class User implements Identified<UUID> {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Map<Game, Character> getCharacterGameMap() {
+        return characterGameMap;
+    }
+
+    public void setCharacterGameMap(Map<Game, Character> characterGameMap) {
+        this.characterGameMap = characterGameMap;
+    }
+
+    public Map<Game, Role> getRole() {
+        return role;
+    }
+
+    public void setRole(Map<Game, Role> role) {
+        this.role = role;
     }
 
     public Map<Character, Game> getCharacterGameMap() {

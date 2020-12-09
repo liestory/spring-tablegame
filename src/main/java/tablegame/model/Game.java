@@ -1,20 +1,35 @@
 package tablegame.model;
 
-import lombok.Getter;
 
 import java.util.HashSet;
 import java.util.Set;
 
 /**
+ *
+ *
  * @author nemykin 14.10.2020
  */
-@Getter
 public class Game implements Identified<Long> {
     private static final long serialVersionUID = -9005741475704378708L;
 
+    /**
+     * id игры
+     */
     private Long id;
+
+    /**
+     * имя игры
+     */
     private String gameName;
+
+    /**
+     * список юзеров в данной игре
+     */
     private Set<User> users;
+
+    /**
+     * состояние игры.
+     */
     private GameStatus gameStatus;
 
     public Game() {
@@ -22,7 +37,7 @@ public class Game implements Identified<Long> {
         this.gameStatus = GameStatus.CREATED;
     }
 
-    public Game(Long id, String gameName){
+    public Game(Long id, String gameName) {
         this();
         this.id = id;
         this.gameName = gameName;

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import tablegame.dao.UserDAO;
 import tablegame.model.Character;
 import tablegame.model.Game;
+import tablegame.model.Game;
 import tablegame.model.Role;
 import tablegame.model.User;
 import tablegame.model.UserStatus;
@@ -44,8 +45,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addRole(User user, Role role) {
-        user.setRole(role);
+    public void addRole(User user, Role role, Game game) {
+        user.getRole().put(game, role);
     }
 
     @Override

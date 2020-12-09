@@ -18,7 +18,7 @@ public interface GameService {
      * @param game
      * @param users
      */
-    void addUserToGame(Game game, List<User> users);
+    void addUserToGame(String game, List<User> users);
 
     /**
      *

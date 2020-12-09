@@ -3,6 +3,9 @@ package tablegame.model;
 import javax.validation.constraints.NotNull;
 
 /**
+ * состояние персонажа внутри игры
+ * ВАЖНО! персонаж не существет отдельно от игры.
+ *
  * @author nemykin 07.12.2020
  */
 public enum CharacterStatus {
@@ -13,6 +16,9 @@ public enum CharacterStatus {
     IN_REST("В зоне отдыха"),
     DEAD("Мертв");
 
+    /**
+     * словесное описание статуса
+     */
     private String description;
 
     CharacterStatus(String description) {
@@ -23,6 +29,13 @@ public enum CharacterStatus {
         return description;
     }
 
+    /**
+     * получить статус по его описанию
+     * необходимо для мапинга значения приходящих с фронта
+     *
+     * @param desc -  описание состояния
+     * @return
+     */
     public static CharacterStatus getStatusByDesc(@NotNull String desc) {
         return CharacterStatus.valueOf(desc);
     }

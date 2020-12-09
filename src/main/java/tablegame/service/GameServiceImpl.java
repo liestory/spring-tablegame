@@ -1,7 +1,6 @@
 package tablegame.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import tablegame.dao.GameDAO;
 import tablegame.model.Game;
@@ -15,7 +14,6 @@ import java.util.List;
  */
 @Slf4j
 @Service
-@PropertySource(value = {"classpath:application.properties"})
 public class GameServiceImpl implements GameService {
 
     private GameDAO gameDAO;
@@ -26,7 +24,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public void addUserToGame(Game game, List<User> users) {
+    public void addUserToGame(String game, List<User> users) {
         gameDAO.addUserForGame(game, users);
     }
 
