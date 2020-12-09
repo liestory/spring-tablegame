@@ -1,6 +1,5 @@
 package tablegame.model;
 
-import java.util.Map;
 import java.util.AbstractMap;
 import java.util.Map;
 import java.util.UUID;
@@ -32,8 +31,6 @@ public class User implements Identified<UUID> {
      * TODO: возможно тоже должен быть привязан к игре
      */
     private UserStatus userStatus;
-    private Role role;
-    private Map<Character, Game> characterGameMap;
 
     /**
      * роль игрока
@@ -92,14 +89,6 @@ public class User implements Identified<UUID> {
         this.password = password;
     }
 
-    public Map<Game, Character> getCharacterGameMap() {
-        return characterGameMap;
-    }
-
-    public void setCharacterGameMap(Map<Game, Character> characterGameMap) {
-        this.characterGameMap = characterGameMap;
-    }
-
     public Map<Game, Role> getRole() {
         return role;
     }
@@ -108,11 +97,11 @@ public class User implements Identified<UUID> {
         this.role = role;
     }
 
-    public Map<Character, Game> getCharacterGameMap() {
+    public Map<Game, Character> getCharacterGameMap() {
         return characterGameMap;
     }
 
-    public void setCharacterGameMap(Map<Character, Game> characterGameMap) {
+    public void setCharacterGameMap(Map<Game, Character> characterGameMap) {
         this.characterGameMap = characterGameMap;
     }
 }

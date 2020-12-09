@@ -20,7 +20,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<ResponseError> illegalArgumentException(NullPointerException e) {
         ResponseError responseError = new ResponseError(UUID.randomUUID(),
                 e.getMessage(),
-                "Отсутсвует значение. Исправте и попройте запрос заново",
+                "Отсутсвует значение. исправте и попройте запрос заново",
                 "");
         return new ResponseEntity<>(responseError, new HttpHeaders(), HttpStatus.NO_CONTENT);
     }
@@ -30,7 +30,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<ResponseError> illegalArgumentException(IllegalArgumentException e) {
         ResponseError responseError = new ResponseError(UUID.randomUUID(),
                 e.getMessage(),
-                "Некорректное значение. Исправте и попройте запрос заново",
+                "Некорректное значение. исправте и попройте запрос заново",
                 "");
         return new ResponseEntity<>(responseError, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }

@@ -4,7 +4,6 @@ import org.springframework.stereotype.Repository;
 import tablegame.dao.UserDAO;
 import tablegame.model.Character;
 import tablegame.model.Game;
-import tablegame.model.Game;
 import tablegame.model.Role;
 import tablegame.model.User;
 
@@ -45,7 +44,7 @@ public class UserDAOImpl extends AbstractDao<User, UUID> implements UserDAO {
     }
 
     @Override
-    public Map<Character, Game> getCharacterByLogin(String name) {
+    public Map<Game, Character> getCharacterByLogin(String name) {
         for (User element : elements.values()) {
             if (element.getUsername().equals(name)) {
                 return element.getCharacterGameMap();

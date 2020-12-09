@@ -7,14 +7,12 @@ import org.springframework.stereotype.Service;
 import tablegame.dao.UserDAO;
 import tablegame.model.Character;
 import tablegame.model.Game;
-import tablegame.model.Game;
 import tablegame.model.Role;
 import tablegame.model.User;
 import tablegame.model.UserStatus;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
-import java.util.AbstractMap;
 import java.util.Map;
 
 /**
@@ -50,8 +48,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void changeRole(User user, Role role) {
-        user.setRole(role);
+    public void changeRole(User user, Role role, Game game) {
+        for (Map.Entry<Game, Role> gameRoleEntry : user.getRole().entrySet()) {
+            if (gameRoleEntry.getKey().equals(game.getGameName())) {
+                gameRoleEntry.setValue(role);
+            }
+        }
+
     }
 
     @Override
@@ -62,6 +65,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public void createCharacterByUser(User user, Game game) {
         Character character = new Character();
-        user.setCharacterGameMap(Map.ofEntries(new AbstractMap.SimpleEntry<>(character, game)));
+        user.getCharacterGameMap().put(game, character);
     }
 }

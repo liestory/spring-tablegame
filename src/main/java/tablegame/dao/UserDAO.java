@@ -38,6 +38,6 @@ public interface UserDAO extends GenericDAO<User, UUID>{
      * @param name
      * @return
      */
-    Map<Character, Game> getCharacterByLogin(String name);
+    Map<Game, Character> getCharacterByLogin(String name);
 
 }

@@ -20,7 +20,7 @@ public class CharacterDto {
     private Long id;
 
     /**
-     * Имя юзера
+     * имя юзера
      */
     private String userName;
 

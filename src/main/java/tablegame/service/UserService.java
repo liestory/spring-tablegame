@@ -31,7 +31,7 @@ public interface UserService {
      *
      * @param user
      */
-    void changeRole(User user, Role role);
+    void changeRole(User user, Role role, Game game);
 
     /**
      * изменить статус пользователя пользователю роль
