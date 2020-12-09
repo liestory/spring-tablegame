@@ -35,7 +35,7 @@ public class RegistrationUserController {
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public UserDto userRegistration(@Validated @RequestBody UserDto userDto, BindingResult result) {
+    public UserDto userRegistration(@RequestBody UserDto userDto, BindingResult result) {
         if (result.hasErrors()) {
             userDto.setErrors(result.getAllErrors());
             return userDto;
@@ -46,7 +46,7 @@ public class RegistrationUserController {
     }
 
     @RequestMapping(value = "/game", method = RequestMethod.POST)
-    public GameDto gameRegistration(@Validated @RequestBody UserDto userDto, GameDto gameDto, BindingResult result) {
+    public GameDto gameRegistration(@RequestBody UserDto userDto, GameDto gameDto, BindingResult result) {
         if (result.hasErrors()) {
             gameDto.setErrors(result.getAllErrors());
             return gameDto;

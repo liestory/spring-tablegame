@@ -22,6 +22,10 @@ public class GameDtoValidator {
             log.error("Нет названия игры");
             throw new NullPointerException("Нет названия игры");
         }
+        if(!gameDto.getErrors().isEmpty()){
+            log.error("Непредвиденные ошибки");
+            throw new RuntimeException("Непредвиденные ошибки");
+        }
     }
 
 }

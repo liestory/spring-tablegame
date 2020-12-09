@@ -34,5 +34,9 @@ public class UserDtoValidator {
             log.error("Пароли не совпадают");
             throw new RuntimeException("Пароли не совпадают");
         }
+        if(!userDto.getErrors().isEmpty()){
+            log.error("Непредвиденные ошибки");
+            throw new RuntimeException("Непредвиденные ошибки");
+        }
     }
 }

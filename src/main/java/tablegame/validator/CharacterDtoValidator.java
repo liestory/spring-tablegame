@@ -22,5 +22,9 @@ public class CharacterDtoValidator {
             log.error("Логин для привязки персонажа пуст");
             throw new NullPointerException("Логин пустой");
         }
+        if(!characterDto.getErrors().isEmpty()){
+            log.error("Непредвиденные ошибки");
+            throw new RuntimeException("Непредвиденные ошибки");
+        }
     }
 }
