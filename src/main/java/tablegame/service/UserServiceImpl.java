@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import tablegame.dao.UserDAO;
+import tablegame.model.Game;
 import tablegame.model.Role;
 import tablegame.model.User;
 
@@ -39,7 +40,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addRole(User user, Role role) {
-        user.setRole(role);
+    public void addRole(User user, Role role, Game game) {
+        user.getRole().put(game, role);
     }
 }

@@ -2,7 +2,6 @@ package tablegame.service;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import tablegame.dao.GameDAO;
 import tablegame.model.Game;
@@ -15,7 +14,6 @@ import java.util.List;
  * @author Asus 14.10.2020
  */
 @Service
-@PropertySource(value = {"classpath:application.properties"})
 public class GameServiceImpl implements GameService {
 
     private static final Logger log = LogManager.getLogger(UserServiceImpl.class.getName());
@@ -28,7 +26,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public void addUserToGame(Game game, List<User> users) {
+    public void addUserToGame(String game, List<User> users) {
         gameDAO.addUserForGame(game, users);
     }
 

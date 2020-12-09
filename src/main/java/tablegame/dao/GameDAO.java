@@ -1,7 +1,6 @@
 package tablegame.dao;
 
 import tablegame.model.Game;
-import tablegame.model.GameStatus;
 import tablegame.model.User;
 
 import java.util.List;
@@ -14,17 +13,20 @@ import java.util.List;
 public interface GameDAO extends GenericDAO<Game, Long> {
 
     /**
-     * получить название игры
+     * получить игру по названию
      *
-     * @param gameName
-     * @return
+     * @param gameName - название игры
+     * @return - карточка игры
      */
     Game getByName(String gameName);
 
     /**
-     * @param user
+     * Добавить юзеров в игру
+     *
+     * @param gameName - название игры
+     * @param user     - списоку юзеров
      */
-    void addUserForGame(Game gameName, List<User> user);
+    void addUserForGame(String gameName, List<User> user);
 
 
 //    GameStatus get
