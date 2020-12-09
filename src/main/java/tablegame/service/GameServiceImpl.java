@@ -1,8 +1,8 @@
 package tablegame.service;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import tablegame.controller.dto.GameDto;
 import tablegame.dao.GameDAO;
 import tablegame.model.Game;
 import tablegame.model.GameStatus;
@@ -14,9 +14,9 @@ import java.util.List;
  * @author Asus 14.10.2020
  */
 @Service
+@Slf4j
 public class GameServiceImpl implements GameService {
 
-    private static final Logger log = LogManager.getLogger(UserServiceImpl.class.getName());
 
     private GameDAO gameDAO;
 
@@ -26,17 +26,34 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public void addUserToGame(String game, List<User> users) {
-        gameDAO.addUserForGame(game, users);
-    }
-
-    @Override
-    public boolean changeStatusInTheGame(Game game, GameStatus gameStatus) {
-        GameStatus gameStatusBefore = game.getGameStatus();
-        game.setGameStatus(gameStatus);
+    public boolean changeStatusInTheGame(String game, GameStatus gameStatus) {
+        GameStatus gameStatusBefore = gameDAO.getByName(game).getGameStatus();
+        gameDAO.getByName(game).setGameStatus(gameStatus);
         if (!gameStatusBefore.equals(gameStatus)) {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void addUserToGame(String game, List<User> users) {
+        gameDAO.addUserForGame(game, users);
+
+    }
+
+    @Override
+    public GameDto updateUserToGame(String game, List<User> users) {
+        gameDAO.addUserForGame(game, users);
+        Game gameClass = gameDAO.getByName(game);
+        GameDto gameDto = new GameDto();
+        gameDto.setId(gameClass.getId());
+        gameDto.setGameName(gameClass.getGameName());
+        gameDto.getUsers().addAll(gameClass.getUsers());
+        return gameDto;
+    }
+
+    @Override
+    public void deleteUserToGame(String game, List<User> users) {
+        gameDAO.deleteUserForGame(game, users);
     }
 }

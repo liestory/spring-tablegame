@@ -1,26 +1,14 @@
 package tablegame.service;
 
-import tablegame.controller.dto.GameDto;
-import tablegame.model.GameStatus;
+import tablegame.controller.dto.CharacterDto;
 import tablegame.model.User;
 
 import java.util.List;
 
 /**
- * сервисы по состояниям игр
- *
- * @author Asus 14.10.2020
+ * @author nemykin 09.12.2020
  */
-public interface GameService {
-
-    /**
-     * обновить статус игры
-     *
-     * @param game       - название игры
-     * @param gameStatus - требуемый статус
-     * @return - успешно ли выполнилась операция
-     */
-    boolean changeStatusInTheGame(String game, GameStatus gameStatus);
+public interface CharacterService {
 
     /**
      * добавить игру
@@ -28,7 +16,7 @@ public interface GameService {
      * @param game  - название игры
      * @param users - пользователи для новой игры
      */
-    void addUserToGame(String game, List<User> users);
+    void addCharacterCharacteristics(String game, List<User> users);
 
     /**
      * обновление списка пользователей
@@ -37,7 +25,7 @@ public interface GameService {
      * @param users - список пользователей
      * @return - возват карточки игры для клиента
      */
-    GameDto updateUserToGame(String game, List<User> users);
+    CharacterDto updateUserToGame(String game, List<User> users);
 
     /**
      * удалить пользователей из игры по названию

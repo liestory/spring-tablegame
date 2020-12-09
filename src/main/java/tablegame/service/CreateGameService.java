@@ -7,5 +7,11 @@ import tablegame.controller.dto.GameDto;
  */
 public interface CreateGameService {
 
+    /**
+     * создание игры
+     *
+     * @param gameDto - карта данных от клиента
+     * @return - заполненая карта после создания
+     */
     GameDto regGame(GameDto gameDto);
 }

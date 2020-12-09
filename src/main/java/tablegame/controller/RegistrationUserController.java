@@ -1,8 +1,6 @@
 package tablegame.controller;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,14 +16,12 @@ import tablegame.service.RegistrationService;
  */
 @RestController
 @RequestMapping("/api/registration")
+@Slf4j
 public class RegistrationUserController {
-
-    private static final Logger logger = LogManager.getLogger(RegistrationUserController.class.getName());
 
     private RegistrationService registrationService;
     private CreateGameService createGameService;
 
-    @Autowired
     public RegistrationUserController(RegistrationService registrationService, CreateGameService createGameService) {
         this.registrationService = registrationService;
         this.createGameService = createGameService;

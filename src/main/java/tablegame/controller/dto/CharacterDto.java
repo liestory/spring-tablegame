@@ -1,18 +1,17 @@
 package tablegame.controller.dto;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.validation.ObjectError;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author nemykin 08.12.2020
  */
-@Getter
-@Setter
 public class CharacterDto {
 
+    public CharacterDto() {
+    }
 
     /**
      * id персонажа
@@ -25,8 +24,53 @@ public class CharacterDto {
     private String userName;
 
     /**
+     *  список характеристик для 
+     */
+    private CharacteristicsDto characteristicsDto;
+    /**
+     * название игры
+     */
+    private String gameName;
+
+    /**
      * список ошибок
      */
     private List<ObjectError> errors;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public List<ObjectError> getErrors() {
+        return errors;
+    }
+
+    public void setErrors(List<ObjectError> errors) {
+        this.errors = errors;
+    }
+
+    public String getGameName() {
+        return gameName;
+    }
+
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userName);
+    }
 }
