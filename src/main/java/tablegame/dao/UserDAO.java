@@ -1,8 +1,11 @@
 package tablegame.dao;
 
+import tablegame.model.Character;
+import tablegame.model.Game;
 import tablegame.model.Role;
 import tablegame.model.User;
 
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -29,5 +32,12 @@ public interface UserDAO extends GenericDAO<User, UUID>{
      */
     Role getRoleByLogin(String name, String gameName);
 
-
+    /**
+     * получить список персонажей по его
+     *
+     * @param userId   - id юзера в системе
+     * @param gameName - название игры
+     * @return
+     */
+    Map<Game, Character> getCharacterByUserIdAndGameName(UUID userId, String gameName);
 }

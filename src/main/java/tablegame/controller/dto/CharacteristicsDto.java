@@ -1,5 +1,7 @@
 package tablegame.controller.dto;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.validation.ObjectError;
 
 import java.util.List;
@@ -8,6 +10,8 @@ import java.util.Objects;
 /**
  * @author nemykin 09.12.2020
  */
+@Getter
+@Setter
 public class CharacteristicsDto {
 
     /**
@@ -59,72 +63,18 @@ public class CharacteristicsDto {
     public CharacteristicsDto() {
     }
 
-    public int getStrength() {
-        return strength;
-    }
-
-    public void setStrength(int strength) {
+    public CharacteristicsDto(String characterName, int strength, int dexterity, int constitution, int intelligent, int wisdom, int charisma) {
+        this.characterName = characterName;
         this.strength = strength;
-    }
-
-    public int getDexterity() {
-        return dexterity;
-    }
-
-    public void setDexterity(int dexterity) {
         this.dexterity = dexterity;
-    }
-
-    public int getConstitution() {
-        return constitution;
-    }
-
-    public void setConstitution(int constitution) {
         this.constitution = constitution;
-    }
-
-    public int getIntelligent() {
-        return intelligent;
-    }
-
-    public void setIntelligent(int intelligent) {
         this.intelligent = intelligent;
-    }
-
-    public int getWisdom() {
-        return wisdom;
-    }
-
-    public void setWisdom(int wisdom) {
         this.wisdom = wisdom;
-    }
-
-    public int getCharisma() {
-        return charisma;
-    }
-
-    public void setCharisma(int charisma) {
         this.charisma = charisma;
-    }
-
-    public List<ObjectError> getErrors() {
-        return errors;
-    }
-
-    public void setErrors(List<ObjectError> errors) {
-        this.errors = errors;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(strength, dexterity, constitution, intelligent, wisdom, charisma);
-    }
-
-    public String getCharacterName() {
-        return characterName;
-    }
-
-    public void setCharacterName(String characterName) {
-        this.characterName = characterName;
     }
 }

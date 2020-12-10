@@ -15,6 +15,7 @@ public class CharacteristicsServiceImpl implements CharacteristicsService {
     private CharacterDAO characterDAO;
 
     public CharacteristicsServiceImpl(CharacterDAO characterDAO) {
+        log.info("create characteristics service");
         this.characterDAO = characterDAO;
     }
 

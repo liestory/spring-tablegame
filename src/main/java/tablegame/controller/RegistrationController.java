@@ -17,12 +17,12 @@ import tablegame.service.RegistrationService;
 @RestController
 @RequestMapping("/api/registration")
 @Slf4j
-public class RegistrationUserController {
+public class RegistrationController {
 
     private RegistrationService registrationService;
     private GameService gameService;
 
-    public RegistrationUserController(RegistrationService registrationService, GameService gameService) {
+    public RegistrationController(RegistrationService registrationService, GameService gameService) {
         this.registrationService = registrationService;
         this.gameService = gameService;
     }

@@ -54,4 +54,13 @@ public class CharacteristicsBase {
      * ВАЖНО! при создании персонажа не более 18
      */
     private int charisma;
+
+    public CharacteristicsBase(int strength, int dexterity, int constitution, int intelligent, int wisdom, int charisma) {
+        this.strength = strength;
+        this.dexterity = dexterity;
+        this.constitution = constitution;
+        this.intelligent = intelligent;
+        this.wisdom = wisdom;
+        this.charisma = charisma;
+    }
 }
