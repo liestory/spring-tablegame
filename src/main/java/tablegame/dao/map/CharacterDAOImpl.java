@@ -1,5 +1,6 @@
 package tablegame.dao.map;
 
+import org.springframework.stereotype.Repository;
 import tablegame.dao.CharacterDAO;
 import tablegame.model.Character;
 import tablegame.model.CharacterStatus;
@@ -12,6 +13,7 @@ import java.util.HashMap;
 /**
  * @author nemykin 07.12.2020
  */
+@Repository
 public class CharacterDAOImpl extends AbstractDao<Character, Long> implements CharacterDAO {
 
     public CharacterDAOImpl() {

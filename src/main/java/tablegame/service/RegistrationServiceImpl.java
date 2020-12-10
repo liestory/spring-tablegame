@@ -1,13 +1,9 @@
 package tablegame.service;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import tablegame.controller.dto.GameDto;
 import tablegame.controller.dto.UserDto;
-import tablegame.dao.GameDAO;
 import tablegame.dao.UserDAO;
-import tablegame.model.Game;
 import tablegame.model.User;
 
 import java.util.UUID;
@@ -16,11 +12,12 @@ import java.util.UUID;
  * @author Asus 28.10.2020
  */
 @Service
+@Slf4j
 public class RegistrationServiceImpl implements RegistrationService {
-    private static final Logger logger = LogManager.getLogger(RegistrationServiceImpl.class.getName());
     private UserDAO userDao;
 
     public RegistrationServiceImpl(UserDAO userDao) {
+        log.info("create registration service");
         this.userDao = userDao;
     }
 

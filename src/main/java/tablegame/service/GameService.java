@@ -14,6 +14,14 @@ import java.util.List;
 public interface GameService {
 
     /**
+     * создание игры
+     *
+     * @param gameDto - карта данных от клиента
+     * @return - заполненая карта после создания
+     */
+    GameDto regGame(GameDto gameDto);
+
+    /**
      * обновить статус игры
      *
      * @param game       - название игры

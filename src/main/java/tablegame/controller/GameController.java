@@ -2,15 +2,13 @@ package tablegame.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import tablegame.controller.dto.GameDto;
-import tablegame.model.User;
 import tablegame.service.GameService;
 
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -27,26 +25,18 @@ public class GameController {
         this.gameService = gameService;
     }
 
-    class UsersForGameRq {
-        @NotNull
-        List<User> users;
-
-        @NotNull
-        String game;
+    @PostMapping(value = "/set_users")
+    public void setUsersForGame(@RequestBody GameDto gameDto, BindingResult result) {
+        gameService.addUserToGame(gameDto.getGameName(), List.copyOf(gameDto.getUsers()));
     }
 
-    @RequestMapping(value = "/set_users", method = RequestMethod.POST)
-    public void setUsersForGame(@RequestBody UsersForGameRq rq, BindingResult result) {
-        gameService.addUserToGame(rq.game, rq.users);
+    @PostMapping(value = "/update_users")
+    public GameDto updateUsersForGame(@RequestBody GameDto gameDto, BindingResult bindingResult) {
+        return gameService.updateUserToGame(gameDto.getGameName(), List.copyOf(gameDto.getUsers()));
     }
 
-    @RequestMapping(value = "/update_users", method = RequestMethod.POST)
-    public GameDto updateUsersForGame(@RequestBody UsersForGameRq rq, BindingResult bindingResult) {
-        return gameService.updateUserToGame(rq.game, rq.users);
-    }
-
-    @RequestMapping(value = "/delete_users", method = RequestMethod.POST)
-    public void deleteUsersForGame(@RequestBody UsersForGameRq rq, BindingResult bindingResult) {
-        gameService.deleteUserToGame(rq.game, rq.users);
+    @PostMapping(value = "/delete_users")
+    public void deleteUsersForGame(@RequestBody GameDto gameDto, BindingResult bindingResult) {
+        gameService.deleteUserToGame(gameDto.getGameName(), List.copyOf(gameDto.getUsers()));
     }
 }

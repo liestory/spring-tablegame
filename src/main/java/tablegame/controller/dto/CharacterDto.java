@@ -24,7 +24,12 @@ public class CharacterDto {
     private String userName;
 
     /**
-     *  список характеристик для 
+     * имя персонажа
+     */
+    private String characterName;
+
+    /**
+     *  список характеристик для
      */
     private CharacteristicsDto characteristicsDto;
     /**
@@ -72,5 +77,21 @@ public class CharacterDto {
     @Override
     public int hashCode() {
         return Objects.hash(id, userName);
+    }
+
+    public String getCharacterName() {
+        return characterName;
+    }
+
+    public void setCharacterName(String characterName) {
+        this.characterName = characterName;
+    }
+
+    public CharacteristicsDto getCharacteristicsDto() {
+        return characteristicsDto;
+    }
+
+    public void setCharacteristicsDto(CharacteristicsDto characteristicsDto) {
+        this.characteristicsDto = characteristicsDto;
     }
 }

@@ -17,12 +17,19 @@ import java.util.List;
 @Slf4j
 public class GameServiceImpl implements GameService {
 
-
     private GameDAO gameDAO;
 
     public GameServiceImpl(GameDAO gameDAO) {
         log.info("create game service");
         this.gameDAO = gameDAO;
+    }
+
+    @Override
+    public GameDto regGame(GameDto gameDto) {
+        Game game = new Game(gameDto.getId(), gameDto.getGameName());
+        gameDAO.save(game);
+        gameDto.setId(game.getId());
+        return gameDto;
     }
 
     @Override

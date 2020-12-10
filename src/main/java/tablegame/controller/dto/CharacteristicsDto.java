@@ -11,6 +11,11 @@ import java.util.Objects;
 public class CharacteristicsDto {
 
     /**
+     * имя персонажа
+     */
+    private String characterName;
+
+    /**
      * сила персонажа со всем его бонусами
      * влияет на рукопашные показатели
      */
@@ -52,6 +57,14 @@ public class CharacteristicsDto {
     private List<ObjectError> errors;
 
     public CharacteristicsDto() {
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
     }
 
     public int getDexterity() {
@@ -105,5 +118,13 @@ public class CharacteristicsDto {
     @Override
     public int hashCode() {
         return Objects.hash(strength, dexterity, constitution, intelligent, wisdom, charisma);
+    }
+
+    public String getCharacterName() {
+        return characterName;
+    }
+
+    public void setCharacterName(String characterName) {
+        this.characterName = characterName;
     }
 }
