@@ -22,9 +22,13 @@ public class CharacterDtoValidator {
             log.error("Логин для привязки персонажа пуст");
             throw new NullPointerException("Логин пустой");
         }
-        if(!characterDto.getErrors().isEmpty()){
-            log.error("Непредвиденные ошибки");
-            throw new RuntimeException("Непредвиденные ошибки");
+        if (characterDto.getGameName().isEmpty()) {
+            log.error("Нет названия игры для привязки персонажа");
+            throw new NullPointerException("имя игры пустое");
+        }
+        if (characterDto.getLevel() <= 0) {
+            log.error("Уровень персонажа не может быть отрицательным");
+            throw new IllegalArgumentException("Отрицательный уровень персонажа");
         }
     }
 }

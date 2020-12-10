@@ -1,0 +1,351 @@
+{
+	"info": {
+		"_postman_id": "fc6275b7-66a1-4454-a213-8f155be4def4",
+		"name": "tablegame",
+		"description": "table game for spring study",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "static/ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/static/ping",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"static",
+						"ping"
+					]
+				},
+				"description": "http://localhost:8080/api/static/ping"
+			},
+			"response": []
+		},
+		{
+			"name": "req user success",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "00c46c73-a435-40ca-b03f-eba1013400ad",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"MrTest\",\r\n    \"password\": \"password\",\r\n    \"repeatPassword\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/registration/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"registration",
+						"user"
+					]
+				},
+				"description": "{\r\n    \"id\": 1,\r\n    \"username\": \"Mr. Test\",\r\n    \"password\": \"password\",\r\n    \"repeatPassword\": \"password\"\r\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "req game success",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "00c46c73-a435-40ca-b03f-eba1013400ad",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"gameName\": \"test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/game/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"game",
+						"create"
+					]
+				},
+				"description": "{\r\n    \"gameName\": \"test game\"\r\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "character/create success",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\": \"MrTest\",\r\n    \"gameName\": \"test\",\r\n    \"characterName\": \"Check\",\r\n    \"level\": 1,\r\n    \"characteristicsDto\":{\r\n        \"strength\": 10,\r\n        \"dexterity\": 11,\r\n        \"constitution\": 12,\r\n        \"intelligent\": 13,\r\n        \"wisdom\": 14,\r\n        \"charisma\": 15\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/character/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"character",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get character with param",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/character/get?userName=MrTest&gameName=test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"character",
+						"get"
+					],
+					"query": [
+						{
+							"key": "userName",
+							"value": "MrTest"
+						},
+						{
+							"key": "gameName",
+							"value": "test"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "kill character success",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\": \"MrTest\",\r\n    \"gameName\": \"test\",\r\n    \"characterName\": \"Check\",\r\n    \"level\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/character/kill",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"character",
+						"kill"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "character/create for characteristic",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\": \"MrTest\",\r\n    \"gameName\": \"test\",\r\n    \"characterName\": \"meow\",\r\n    \"level\": 1,\r\n    \"characteristicsDto\":{\r\n        \"strength\": 10,\r\n        \"dexterity\": 11,\r\n        \"constitution\": 12,\r\n        \"intelligent\": 13,\r\n        \"wisdom\": 14,\r\n        \"charisma\": 15\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/character/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"character",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "character/characteristic/set",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"characterName\": \"meow\",\r\n    \"strength\": 17,\r\n    \"dexterity\": 17,\r\n    \"constitution\": 12,\r\n    \"intelligent\": 13,\r\n    \"wisdom\": 10,\r\n    \"charisma\": 15\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/character/characteristics/set",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"character",
+						"characteristics",
+						"set"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "character/characteristic/update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"characterName\": \"meow\",\r\n    \"strength\": 17,\r\n    \"dexterity\": 17,\r\n    \"constitution\": 12,\r\n    \"intelligent\": 13,\r\n    \"wisdom\": 10,\r\n    \"charisma\": 15\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/character/characteristics/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"character",
+						"characteristics",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "character/characteristic/delete",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"characterName\": \"meow\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/character/characteristics/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"character",
+						"characteristics",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -2,12 +2,9 @@ package tablegame.controller.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.validation.ObjectError;
 import tablegame.model.Character;
-import tablegame.model.Game;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -40,22 +37,16 @@ public class UserDto {
      */
     private String repeatPassword;
 
-//    /**
-//     * список персонажей привязанных к игре
-//     */
-//    private Map<Game, Character> gameCharacterMap;
-
     /**
-     * список ошибок
+     * список персонажей
      */
-    private List<ObjectError> errors;
+    private List<Character> characterList;
 
     public UserDto() {
     }
 
-
     @Override
     public int hashCode() {
-        return Objects.hash(username, password, repeatPassword);
+        return Objects.hash(username, password, repeatPassword, characterList);
     }
 }

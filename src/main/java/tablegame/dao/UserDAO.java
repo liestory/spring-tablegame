@@ -35,8 +35,8 @@ public interface UserDAO extends GenericDAO<User, UUID>{
     /**
      * получить всех персонажа по его логину
      *
-     * @param name
-     * @return
+     * @param name -  логин пользователя
+     * @return -  список карточек персонажа c привязкой к играм
      */
     Map<Game, Character> getCharacterByLogin(String name);
 
@@ -45,7 +45,16 @@ public interface UserDAO extends GenericDAO<User, UUID>{
      *
      * @param userId   - id юзера в системе
      * @param gameName - название игры
-     * @return
+     * @return - список карточек персонажа c привязкой к играм
      */
     Map<Game, Character> getCharacterByUserIdAndGameName(UUID userId, String gameName);
+
+    /**
+     * получить список персонажей по его
+     *
+     * @param userName - логин пользователя
+     * @param gameName - название игры
+     * @return - список карточек персонажа c привязкой к играм
+     */
+    Map<Game, Character> getCharacterByUserNameAndGameName(String userName, String gameName);
 }

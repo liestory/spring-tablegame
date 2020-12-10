@@ -1,7 +1,8 @@
 package tablegame.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.validation.BindingResult;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import tablegame.controller.dto.CharacterDto;
 import tablegame.service.CharacterService;
 import tablegame.service.UserService;
+import tablegame.validator.CharacterDtoValidator;
 
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @author nemykin 08.12.2020
@@ -24,32 +25,33 @@ import java.util.UUID;
 public class CharacterController {
     private CharacterService characterService;
     private UserService userService;
+    private CharacterDtoValidator characterDtoValidator;
 
-    public CharacterController(CharacterService characterService, UserService userService) {
+    public CharacterController(CharacterService characterService,
+                               UserService userService,
+                               CharacterDtoValidator characterDtoValidator) {
         this.characterService = characterService;
         this.userService = userService;
+        this.characterDtoValidator = characterDtoValidator;
     }
 
-    @PostMapping(value = "/create")
-    public CharacterDto userRegistration(@RequestBody CharacterDto characterDto, BindingResult result) {
-        if (result.hasErrors()) {
-            characterDto.setErrors(result.getAllErrors());
-            return characterDto;
-        }
+    @PostMapping("/create")
+    public ResponseEntity<CharacterDto> userRegistration(@RequestBody CharacterDto characterDto) {
+        characterDtoValidator.validate(characterDto);
         characterService.createCharacter(characterDto);
-        return characterDto;
+        return new ResponseEntity<>(characterDto, HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/get")
-    public List<CharacterDto> getCharacter(@RequestParam("id") UUID userId,
-                                           @RequestParam("game") String gameName,
-                                           BindingResult result) {
-        return userService.getCharacterByUserIdAndGameName(userId, gameName);
+    @GetMapping("/get")
+    public ResponseEntity<List<CharacterDto>> getCharacter(@RequestParam("userName") String userName,
+                                                           @RequestParam("gameName") String gameName) {
+        return new ResponseEntity<>(userService.getCharacterByUserNameAndGameName(userName, gameName), HttpStatus.FOUND);
     }
 
-    @PostMapping(value = "/kill")
-    public void killCharacter(@RequestBody CharacterDto characterDto, BindingResult result) {
+    @PostMapping("/kill")
+    public ResponseEntity killCharacter(@RequestBody CharacterDto characterDto) {
+        characterDtoValidator.validate(characterDto);
         characterService.killCharacter(characterDto);
-
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

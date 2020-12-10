@@ -1,7 +1,8 @@
 package tablegame.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.validation.BindingResult;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,19 +23,22 @@ public class CharacteristicsController {
         this.characteristicsService = characteristicsService;
     }
 
-    @PostMapping(value = "/set_users")
-    public void setUsersForGame(@RequestBody CharacteristicsDto characteristicsDto, BindingResult result) {
+    @PostMapping(value = "/set")
+    public ResponseEntity setUsersForGame(@RequestBody CharacteristicsDto characteristicsDto) {
         characteristicsService.addCharacterCharacteristics(characteristicsDto.getCharacterName(), characteristicsDto);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
-    @PostMapping(value = "/update_users")
-    public CharacteristicsDto updateUsersForGame(@RequestBody CharacteristicsDto characteristicsDto, BindingResult bindingResult) {
-        return characteristicsService.updateCharacterCharacteristics(characteristicsDto.getCharacterName(), characteristicsDto);
+    @PostMapping(value = "/update")
+    public ResponseEntity<CharacteristicsDto> updateUsersForGame(@RequestBody CharacteristicsDto characteristicsDto) {
+        return new ResponseEntity<>(characteristicsService.updateCharacterCharacteristics(characteristicsDto.getCharacterName(), characteristicsDto),
+                HttpStatus.OK);
     }
 
-    @PostMapping(value = "/delete_users")
-    public void deleteUsersForGame(@RequestBody CharacteristicsDto characteristicsDto, BindingResult bindingResult) {
+    @PostMapping(value = "/delete")
+    public ResponseEntity deleteUsersForGame(@RequestBody CharacteristicsDto characteristicsDto) {
         characteristicsService.deleteCharacterCharacteristics(characteristicsDto.getCharacterName());
+        return new ResponseEntity(HttpStatus.OK);
     }
 
 }

@@ -9,7 +9,7 @@ import java.util.UUID;
  */
 public class User implements Identified<UUID> {
 
-    private static final long serialVersionUID = -7931737332645464539L;
+    private static final long serialVersionUID = 1896669364631244948L;
 
     /**
      * идентификатор пользователя
@@ -45,8 +45,7 @@ public class User implements Identified<UUID> {
     private Map<Game, Character> characterGameMap;
 
     public User() {
-        this.role = Map.ofEntries(new AbstractMap.SimpleEntry<>(null, Role.PLAYER));
-        this.userStatus = UserStatus.STATUS_ACTIVED;
+        this.userStatus = UserStatus.STATUS_LOCKED;
     }
 
     public User(UUID id, String username, String password) {

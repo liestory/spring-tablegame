@@ -4,6 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 import tablegame.controller.dto.GameDto;
+import tablegame.dao.UserDAO;
+import tablegame.model.User;
 
 /**
  * @author nemykin 08.12.2020
@@ -21,10 +23,6 @@ public class GameDtoValidator {
         if (gameDto.getGameName().isEmpty()) {
             log.error("Нет названия игры");
             throw new NullPointerException("Нет названия игры");
-        }
-        if(!gameDto.getErrors().isEmpty()){
-            log.error("Непредвиденные ошибки");
-            throw new RuntimeException("Непредвиденные ошибки");
         }
     }
 

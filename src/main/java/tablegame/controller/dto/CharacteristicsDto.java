@@ -55,11 +55,6 @@ public class CharacteristicsDto {
      */
     private int charisma;
 
-    /**
-     * список ошибок
-     */
-    private List<ObjectError> errors;
-
     public CharacteristicsDto() {
     }
 

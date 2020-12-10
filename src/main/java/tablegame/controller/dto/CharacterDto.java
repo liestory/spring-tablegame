@@ -2,9 +2,7 @@ package tablegame.controller.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.validation.ObjectError;
 
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -14,6 +12,10 @@ import java.util.Objects;
 @Setter
 public class CharacterDto {
 
+
+    //TODO: здесь глобальная проблема маппинга через Jackson (ошибка ниже). Я пока не нашел способа решения.
+    //      Такая же ошибка была когда я использовал Map<Object, Object>. Но сейчас все значеня верные. Буду рад помощи
+    //      Failed to evaluate Jackson deserialization for type [[simple type, class tablegame.controller.dto.GameDto]]
     public CharacterDto() {
     }
 
@@ -46,11 +48,6 @@ public class CharacterDto {
      * название игры
      */
     private String gameName;
-
-    /**
-     * список ошибок
-     */
-    private List<ObjectError> errors;
 
     @Override
     public int hashCode() {

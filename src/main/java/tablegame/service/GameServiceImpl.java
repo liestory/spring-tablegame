@@ -9,13 +9,13 @@ import tablegame.model.GameStatus;
 import tablegame.model.User;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author Asus 14.10.2020
  */
 @Slf4j
 @Service
-@Slf4j
 public class GameServiceImpl implements GameService {
 
     private GameDAO gameDAO;
@@ -27,7 +27,7 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public GameDto regGame(GameDto gameDto) {
-        Game game = new Game(gameDto.getId(), gameDto.getGameName());
+        Game game = new Game(new Random().nextLong(), gameDto.getGameName());
         gameDAO.save(game);
         gameDto.setId(game.getId());
         return gameDto;
@@ -53,10 +53,9 @@ public class GameServiceImpl implements GameService {
     public GameDto updateUserToGame(String game, List<User> users) {
         gameDAO.addUserForGame(game, users);
         Game gameClass = gameDAO.getByName(game);
-        GameDto gameDto = new GameDto();
-        gameDto.setId(gameClass.getId());
-        gameDto.setGameName(gameClass.getGameName());
-        gameDto.getUsers().addAll(gameClass.getUsers());
+        GameDto gameDto = new GameDto(gameClass.getId(),
+                gameClass.getGameName(),
+                gameClass.getUsers());
         return gameDto;
     }
 

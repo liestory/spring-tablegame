@@ -13,7 +13,6 @@ import java.util.UUID;
  */
 @Slf4j
 @Service
-@Slf4j
 public class RegistrationServiceImpl implements RegistrationService {
     private UserDAO userDao;
 
@@ -24,6 +23,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     @Override
     public UserDto regUser(UserDto userDto) {
+        log.info("==> regUser:= {}", userDto);
         User user = new User(UUID.randomUUID(), userDto.getUsername(), userDto.getPassword());
         userDao.save(user);
         userDto.setId(user.getId());

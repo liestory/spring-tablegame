@@ -8,6 +8,8 @@ import tablegame.model.Character;
 import tablegame.model.CharacterStatus;
 import tablegame.model.CharacteristicsBase;
 
+import java.util.Random;
+
 /**
  * @author nemykin 08.12.2020
  */
@@ -24,7 +26,7 @@ public class CharacterServiceImpl implements CharacterService {
 
     @Override
     public CharacterDto createCharacter(CharacterDto characterDto) {
-        Character character = new Character(characterDto.getId(),
+        Character character = new Character(new Random().nextLong(),
                 characterDto.getCharacterName(),
                 characterDto.getLevel(),
                 new CharacteristicsBase(characterDto.getCharacteristicsDto().getStrength(),

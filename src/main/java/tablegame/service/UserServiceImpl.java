@@ -16,8 +16,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
-import java.util.Map;
 
 /**
  * @author Asus 14.10.2020
@@ -71,8 +69,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<CharacterDto> getCharacterByUserIdAndGameName(UUID userId, String gameName) {
-        Map<Game, Character> gameCharacterMap = userDAO.getCharacterByUserIdAndGameName(userId, gameName);
+    public List<CharacterDto> getCharacterByUserNameAndGameName(String userName, String gameName) {
+        Map<Game, Character> gameCharacterMap = userDAO.getCharacterByUserNameAndGameName(userName, gameName);
         List<CharacterDto> characterDtos = new ArrayList<>();
         for (Character character : gameCharacterMap.values()) {
             CharacterDto characterDto = new CharacterDto();

@@ -1,13 +1,15 @@
 package tablegame.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.validation.BindingResult;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tablegame.controller.dto.GameDto;
 import tablegame.service.GameService;
+import tablegame.validator.GameDtoValidator;
 
 import java.util.List;
 
@@ -20,23 +22,39 @@ import java.util.List;
 public class GameController {
 
     private GameService gameService;
+    private GameDtoValidator gameDtoValidator;
 
-    public GameController(GameService gameService) {
+    public GameController(GameService gameService, GameDtoValidator gameDtoValidator) {
         this.gameService = gameService;
+        this.gameDtoValidator = gameDtoValidator;
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<GameDto> gameRegistration(@RequestBody GameDto gameDto) {
+        gameDtoValidator.validate(gameDto);
+        gameService.regGame(gameDto);
+        return new ResponseEntity<>(gameDto, HttpStatus.CREATED);
     }
 
     @PostMapping(value = "/set_users")
-    public void setUsersForGame(@RequestBody GameDto gameDto, BindingResult result) {
-        gameService.addUserToGame(gameDto.getGameName(), List.copyOf(gameDto.getUsers()));
+    public ResponseEntity setUsersForGame(@RequestBody GameDto gameDto) {
+        gameDtoValidator.validate(gameDto);
+        gameService.addUserToGame(gameDto.getGameName(), List.copyOf(gameDto.getUserNameList()));
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @PostMapping(value = "/update_users")
-    public GameDto updateUsersForGame(@RequestBody GameDto gameDto, BindingResult bindingResult) {
-        return gameService.updateUserToGame(gameDto.getGameName(), List.copyOf(gameDto.getUsers()));
+    public ResponseEntity<GameDto> updateUsersForGame(@RequestBody GameDto gameDto) {
+        gameDtoValidator.validate(gameDto);
+        return new ResponseEntity<>(gameService.updateUserToGame(gameDto.getGameName(), List.copyOf(gameDto.getUserNameList())), HttpStatus.OK);
     }
 
     @PostMapping(value = "/delete_users")
-    public void deleteUsersForGame(@RequestBody GameDto gameDto, BindingResult bindingResult) {
-        gameService.deleteUserToGame(gameDto.getGameName(), List.copyOf(gameDto.getUsers()));
+    public ResponseEntity deleteUsersForGame(@RequestBody GameDto gameDto) {
+        gameDtoValidator.validate(gameDto);
+        gameService.deleteUserToGame(gameDto.getGameName(), List.copyOf(gameDto.getUserNameList()));
+        return new ResponseEntity(HttpStatus.OK);
     }
+
+
 }
