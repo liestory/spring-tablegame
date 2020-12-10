@@ -9,11 +9,17 @@ import tablegame.controller.dto.CharacterDto;
 public interface CharacterService {
 
     /**
-     * создания персонажа с
+     * создания персонажа
      *
-     * @param characterDto
-     * @return
+     * @param characterDto - карточка персонажа от клиента
+     * @return - обновленная карточка для клиента
      */
     CharacterDto createCharacter(CharacterDto characterDto);
 
+    /**
+     * убийство персонажа (перевод в статус смерть)
+     *
+     * @param characterDto - карточка персонажа от клиента
+     */
+    void killCharacter(CharacterDto characterDto);
 }

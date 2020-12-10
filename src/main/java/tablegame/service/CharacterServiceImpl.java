@@ -5,9 +5,8 @@ import org.springframework.stereotype.Service;
 import tablegame.controller.dto.CharacterDto;
 import tablegame.dao.CharacterDAO;
 import tablegame.model.Character;
+import tablegame.model.CharacterStatus;
 import tablegame.model.CharacteristicsBase;
-
-import java.util.UUID;
 
 /**
  * @author nemykin 08.12.2020
@@ -37,6 +36,11 @@ public class CharacterServiceImpl implements CharacterService {
         characterDAO.save(character);
         characterDto.setId(character.getId());
         return characterDto;
+    }
+
+    @Override
+    public void killCharacter(CharacterDto characterDto) {
+        characterDAO.getCharacterByName(characterDto.getCharacterName()).setCharacterStatus(CharacterStatus.DEAD);
     }
 
 }

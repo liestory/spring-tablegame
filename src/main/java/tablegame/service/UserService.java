@@ -1,10 +1,12 @@
 package tablegame.service;
 
+import tablegame.controller.dto.CharacterDto;
 import tablegame.model.Character;
 import tablegame.model.Game;
 import tablegame.model.Role;
 import tablegame.model.User;
 
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -31,7 +33,7 @@ public interface UserService {
      *
      * @param userId   - id юзера
      * @param gameName - название игры
-     * @return -  список карточки персонажа
+     * @return -  список карточек персонажа
      */
-    Map<Game, Character> getCharacterByUserIdAndGameName(UUID userId, String gameName);
+    List<CharacterDto> getCharacterByUserIdAndGameName(UUID userId, String gameName);
 }

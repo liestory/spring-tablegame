@@ -9,15 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import tablegame.controller.dto.CharacterDto;
-import tablegame.controller.dto.CharacteristicsDto;
-import tablegame.model.Character;
-import tablegame.model.Game;
 import tablegame.service.CharacterService;
 import tablegame.service.UserService;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -49,25 +44,12 @@ public class CharacterController {
     public List<CharacterDto> getCharacter(@RequestParam("id") UUID userId,
                                            @RequestParam("game") String gameName,
                                            BindingResult result) {
-        Map<Game, Character> gameCharacterMap = userService.getCharacterByUserIdAndGameName(userId, gameName);
-        List<CharacterDto> characterDtos = new ArrayList<>();
-        for (Character character : gameCharacterMap.values()) {
-            CharacterDto characterDto = new CharacterDto();
-            characterDto.setId(character.getId());
-            characterDto.setCharacterName(character.getCharacterName());
-            characterDto.setGameName(gameName);
-            characterDto.setLevel(character.getLevel());
-            characterDto.setCharacteristicsDto(new CharacteristicsDto(
-                    character.getCharacterName(),
-                    character.getCharacteristics().getStrength(),
-                    character.getCharacteristics().getDexterity(),
-                    character.getCharacteristics().getConstitution(),
-                    character.getCharacteristics().getIntelligent(),
-                    character.getCharacteristics().getWisdom(),
-                    character.getCharacteristics().getCharisma()
-            ));
-            characterDtos.add(characterDto);
-        }
-        return characterDtos;
+        return userService.getCharacterByUserIdAndGameName(userId, gameName);
+    }
+
+    @PostMapping(value = "/kill")
+    public void killCharacter(@RequestBody CharacterDto characterDto, BindingResult result) {
+        characterService.killCharacter(characterDto);
+
     }
 }
