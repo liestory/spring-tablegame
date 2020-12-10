@@ -28,6 +28,11 @@ public interface GameDAO extends GenericDAO<Game, Long> {
      */
     void addUserForGame(String gameName, List<User> user);
 
-
-//    GameStatus get
+    /**
+     * удалить юзеров в игру
+     *
+     * @param gameName - название игры
+     * @param user     - списоку юзеров
+     */
+    void deleteUserForGame(String gameName, List<User> user);
 }

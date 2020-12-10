@@ -40,4 +40,12 @@ public interface UserDAO extends GenericDAO<User, UUID>{
      */
     Map<Game, Character> getCharacterByLogin(String name);
 
+    /**
+     * получить список персонажей по его
+     *
+     * @param userId   - id юзера в системе
+     * @param gameName - название игры
+     * @return
+     */
+    Map<Game, Character> getCharacterByUserIdAndGameName(UUID userId, String gameName);
 }

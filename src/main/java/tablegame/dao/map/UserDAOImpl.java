@@ -52,4 +52,17 @@ public class UserDAOImpl extends AbstractDao<User, UUID> implements UserDAO {
         }
         return null;
     }
+
+    @Override
+    public Map<Game, Character> getCharacterByUserIdAndGameName(UUID userId, String gameName) {
+        for (User element : elements.values()) {
+            if (element.getId().equals(userId)) {
+                for (Map.Entry<Game, Character> gameCharacterEntry : element.getCharacterGameMap().entrySet())
+                    if (gameCharacterEntry.getKey().getGameName().equals(gameName)) {
+                        return Map.ofEntries(gameCharacterEntry);
+                    }
+            }
+        }
+        return null;
+    }
 }

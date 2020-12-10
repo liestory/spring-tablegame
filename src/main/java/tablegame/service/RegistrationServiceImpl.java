@@ -13,10 +13,12 @@ import java.util.UUID;
  */
 @Slf4j
 @Service
+@Slf4j
 public class RegistrationServiceImpl implements RegistrationService {
     private UserDAO userDao;
 
     public RegistrationServiceImpl(UserDAO userDao) {
+        log.info("create registration service");
         this.userDao = userDao;
     }
 

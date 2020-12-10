@@ -1,9 +1,9 @@
 package tablegame.service;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.context.annotation.PropertySource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import tablegame.controller.dto.CharacterDto;
+import tablegame.controller.dto.CharacteristicsDto;
 import tablegame.dao.UserDAO;
 import tablegame.model.Character;
 import tablegame.model.Game;
@@ -13,16 +13,18 @@ import tablegame.model.UserStatus;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.Map;
 
 /**
  * @author Asus 14.10.2020
  */
 @Service
-@PropertySource(value = {"classpath:application.properties"})
+@Slf4j
 public class UserServiceImpl implements UserService {
-
-    private static final Logger log = LogManager.getLogger(UserServiceImpl.class.getName());
 
     private UserDAO userDAO;
 
@@ -67,4 +69,29 @@ public class UserServiceImpl implements UserService {
         Character character = new Character();
         user.getCharacterGameMap().put(game, character);
     }
+
+    @Override
+    public List<CharacterDto> getCharacterByUserIdAndGameName(UUID userId, String gameName) {
+        Map<Game, Character> gameCharacterMap = userDAO.getCharacterByUserIdAndGameName(userId, gameName);
+        List<CharacterDto> characterDtos = new ArrayList<>();
+        for (Character character : gameCharacterMap.values()) {
+            CharacterDto characterDto = new CharacterDto();
+            characterDto.setId(character.getId());
+            characterDto.setCharacterName(character.getCharacterName());
+            characterDto.setGameName(gameName);
+            characterDto.setLevel(character.getLevel());
+            characterDto.setCharacteristicsDto(new CharacteristicsDto(
+                    character.getCharacterName(),
+                    character.getCharacteristics().getStrength(),
+                    character.getCharacteristics().getDexterity(),
+                    character.getCharacteristics().getConstitution(),
+                    character.getCharacteristics().getIntelligent(),
+                    character.getCharacteristics().getWisdom(),
+                    character.getCharacteristics().getCharisma()
+            ));
+            characterDtos.add(characterDto);
+        }
+        return characterDtos;
+    }
+
 }

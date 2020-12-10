@@ -3,13 +3,16 @@ package tablegame.controller.dto;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.validation.ObjectError;
+import tablegame.model.Character;
+import tablegame.model.Game;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
 /**
- * данные о юзере
+ * объекты для игр получаемые с контролеров
  *
  * @author nemykin 28.10.2020
  */
@@ -18,12 +21,12 @@ import java.util.UUID;
 public class UserDto {
 
     /**
-     *  id юзера
+     * id юзера
      */
     private UUID id;
 
     /**
-     * имя юзера (логин)
+     * логин юзера
      */
     private String username;
 
@@ -36,6 +39,11 @@ public class UserDto {
      * повтор пароля
      */
     private String repeatPassword;
+
+//    /**
+//     * список персонажей привязанных к игре
+//     */
+//    private Map<Game, Character> gameCharacterMap;
 
     /**
      * список ошибок

@@ -48,10 +48,12 @@ public class Character implements Identified<Long> {
         this.characterStatus = CharacterStatus.CREATE;
     }
 
-    public Character(Long id, String characterName) {
+    public Character(Long id, String characterName, int level, CharacteristicsBase characteristicsBase) {
         this();
         this.id = id;
         this.characterName = characterName;
+        this.level = level;
+        this.characteristicsBase = characteristicsBase;
     }
 
     @Override

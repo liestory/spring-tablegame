@@ -35,4 +35,14 @@ public class GameDAOImpl extends AbstractDao<Game, Long> implements GameDAO {
             }
         }
     }
+
+    @Override
+    public void deleteUserForGame(String gameName, List<User> user) {
+        for (Game element : elements.values()) {
+            if (element.getGameName().equals(gameName)) {
+                element.getUsers().removeAll(user);
+            }
+        }
+    }
+
 }

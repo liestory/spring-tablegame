@@ -17,6 +17,10 @@ import java.util.Set;
 @Getter
 @Setter
 public class GameDto {
+
+    public GameDto() {
+    }
+
     /**
      * id игры
      */
@@ -28,7 +32,7 @@ public class GameDto {
     private String gameName;
 
     /**
-     * список пользователей
+     * юзаеры в этой игре
      */
     private Set<User> users;
 
@@ -36,9 +40,6 @@ public class GameDto {
      * список ошибок
      */
     private List<ObjectError> errors;
-
-    public GameDto() {
-    }
 
     @Override
     public int hashCode() {

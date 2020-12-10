@@ -2,6 +2,7 @@ package tablegame.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,9 +21,8 @@ import tablegame.service.UserService;
  */
 @RestController
 @RequestMapping("/api/admin/panel")
+@Slf4j
 public class AdminPanelController {
-
-    private static final Logger logger = LogManager.getLogger(RegistrationUserController.class.getName());
 
     private UserService userService;
 
