@@ -1,6 +1,8 @@
 package tablegame.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import tablegame.controller.dto.CharacterDto;
 import tablegame.dao.CharacterDAO;
@@ -15,8 +17,11 @@ import java.util.Random;
  */
 @Slf4j
 @Service
+@PropertySource(value = {"classpath:application.properties"})
 public class CharacterServiceImpl implements CharacterService {
 
+    @Value("${character.level.min}")
+    private String minLevel;
     CharacterDAO characterDAO;
 
     public CharacterServiceImpl(CharacterDAO characterDAO) {
@@ -26,6 +31,9 @@ public class CharacterServiceImpl implements CharacterService {
 
     @Override
     public CharacterDto createCharacter(CharacterDto characterDto) {
+        if (characterDto.getLevel() <= Integer.valueOf(minLevel)) {
+            throw new RuntimeException("При создании уровень персонажа не меньше " + minLevel);
+        }
         Character character = new Character(new Random().nextLong(),
                 characterDto.getCharacterName(),
                 characterDto.getLevel(),

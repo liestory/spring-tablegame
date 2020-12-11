@@ -29,7 +29,7 @@
             <column name="game_at" type="timestamp with time zone" remarks="Дата создания">
                 <constraints nullable="false"/>
             </column>
-            <column name="game_at" type="timestamp with time zone" remarks="Дата обновления">
+            <column name="game_update" type="timestamp with time zone" remarks="Дата обновления">
                 <constraints nullable="false"/>
             </column>
         </createTable>

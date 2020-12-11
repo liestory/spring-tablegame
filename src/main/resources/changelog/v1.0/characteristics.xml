@@ -1,0 +1,51 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet id="1" author="Igor Nemykin">
+        <preConditions>
+            <not>
+                <tableExists tableName="characteristic"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="characteristic"
+                     remarks="Таблица характеристик зарегистрированных персонаженй">
+            <column name="id" type="uuid"
+                    remarks="Идентификатор записи">
+                <constraints primaryKey="true"
+                             primaryKeyName="characteristic_pk"
+                             nullable="false"/>
+            </column>
+
+            <column name="strength" type="smallint" remarks="Наименование краткое">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="dexterity" type="smallint" remarks="Статус персонажа в системе">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="constitution" type="smallint" remarks="Уровень персонажа">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="intelligent" type="smallint" remarks="Наименование краткое">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="wisdom" type="smallint" remarks="Статус персонажа в системе">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="charisma" type="smallint" remarks="Уровень персонажа">
+                <constraints nullable="false"/>
+            </column>
+
+
+
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
