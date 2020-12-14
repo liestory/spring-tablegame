@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.tablegame.controller.dto.GameDto;
 import ru.tablegame.service.GameService;
-import tablegame.validator.GameDtoValidator;
+import ru.tablegame.validator.GameDtoValidator;
 
 import java.util.List;
 

@@ -3,10 +3,10 @@ package ru.tablegame.validator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
-import tablegame.controller.dto.UserDto;
+import ru.tablegame.controller.dto.UserDto;
 
 /**
- * проверки для UserDto
+ * проверка карточки юзера с контроллера
  *
  * @author Asus 28.10.2020
  */

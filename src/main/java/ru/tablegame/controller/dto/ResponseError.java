@@ -1,4 +1,4 @@
-package tablegame.controller.dto;
+package ru.tablegame.controller.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,6 +6,8 @@ import lombok.Setter;
 import java.util.UUID;
 
 /**
+ * карточки ошибки.
+ *
  * @author nemykin 29.10.2020
  */
 

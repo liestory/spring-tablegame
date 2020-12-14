@@ -7,13 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.tablegame.controller.dto.GameDto;
 import ru.tablegame.controller.dto.UserDto;
-import ru.tablegame.service.GameService;
 import ru.tablegame.service.RegistrationService;
-import tablegame.controller.dto.UserDto;
-import tablegame.service.RegistrationService;
-import tablegame.validator.UserDtoValidator;
+import ru.tablegame.validator.UserDtoValidator;
 
 /**
  * @author nemykin 28.10.2020

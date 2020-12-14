@@ -2,8 +2,6 @@ package ru.tablegame.controller.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.validation.ObjectError;
-import tablegame.model.Character;
 
 import java.util.List;
 import java.util.Objects;

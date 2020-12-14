@@ -9,13 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.tablegame.service.UserService;
 import ru.tablegame.controller.dto.CharacterDto;
 import ru.tablegame.service.CharacterService;
-import tablegame.controller.dto.CharacterDto;
-import tablegame.service.CharacterService;
-import tablegame.service.UserService;
-import tablegame.validator.CharacterDtoValidator;
+import ru.tablegame.service.UserService;
+import ru.tablegame.validator.CharacterDtoValidator;
 
 import java.util.List;
 

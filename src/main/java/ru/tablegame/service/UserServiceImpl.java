@@ -9,7 +9,7 @@ import ru.tablegame.model.Character;
 import ru.tablegame.model.Game;
 import ru.tablegame.model.Role;
 import ru.tablegame.model.User;
-import tablegame.model.UserStatus;
+import ru.tablegame.model.UserStatus;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;

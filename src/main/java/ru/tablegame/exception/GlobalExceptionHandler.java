@@ -1,4 +1,4 @@
-package tablegame.exception;
+package ru.tablegame.exception;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -6,15 +6,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import tablegame.controller.dto.ResponseError;
+import ru.tablegame.controller.dto.ResponseError;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.UUID;
 
 /**
+ * глобальная обработка ошибок в система
+ *
  * @author nemykin 29.10.2020
  */
-@RestControllerAdvice(basePackages = "tablegame.controller")
+@RestControllerAdvice(basePackages = "ru.tablegame.controller")
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(NullPointerException.class)

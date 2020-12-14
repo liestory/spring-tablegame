@@ -1,13 +1,13 @@
-package tablegame.validator;
+package ru.tablegame.validator;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
-import tablegame.controller.dto.GameDto;
-import tablegame.dao.UserDAO;
-import tablegame.model.User;
+import ru.tablegame.controller.dto.GameDto;
 
 /**
+ * Валидация карточки игры с контроллера
+ *
  * @author nemykin 08.12.2020
  */
 @Slf4j

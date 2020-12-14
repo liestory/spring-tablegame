@@ -4,14 +4,9 @@ import ru.tablegame.controller.dto.CharacterDto;
 import ru.tablegame.model.Game;
 import ru.tablegame.model.Role;
 import ru.tablegame.model.User;
-import tablegame.controller.dto.CharacterDto;
-import tablegame.model.Game;
-import tablegame.model.Role;
-import tablegame.model.User;
-import tablegame.model.UserStatus;
+import ru.tablegame.model.UserStatus;
 
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @author Asus 14.10.2020
