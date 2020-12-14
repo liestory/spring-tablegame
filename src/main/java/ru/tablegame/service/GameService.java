@@ -5,10 +5,9 @@ import ru.tablegame.model.GameStatus;
 import ru.tablegame.model.User;
 
 import java.util.List;
-import java.util.UUID;
 
 /**
- * сервисы по состояниям игр
+ * сервисы по работе с играми
  *
  * @author Asus 14.10.2020
  */

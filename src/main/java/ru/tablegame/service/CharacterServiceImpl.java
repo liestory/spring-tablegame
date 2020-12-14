@@ -26,7 +26,7 @@ public class CharacterServiceImpl implements CharacterService {
     @Override
     public CharacterDto createCharacter(CharacterDto characterDto) {
         Character character = new Character();
-        character.setId(characterDto.getId());
+        character.setId(new Random().nextLong());
         character.setCharacterName(characterDto.getCharacterName());
         character.setCharacteristics(characterDto.getCharacteristics());
         character.setCharacteristicsBase(characterDto.getCharacteristicsBase());
