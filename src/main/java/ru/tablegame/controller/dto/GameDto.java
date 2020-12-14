@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import ru.tablegame.model.User;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * объекты для юзера получаемые с контролеров
@@ -28,12 +28,12 @@ public class GameDto {
     /**
      * юзаеры в этой игре
      */
-    private List<User> userNameList;
+    private Set<User> userNameList;
 
     public GameDto() {
     }
 
-    public GameDto(Long id, String gameName, List<User> userNameList) {
+    public GameDto(Long id, String gameName, Set<User> userNameList) {
         this.id = id;
         this.gameName = gameName;
         this.userNameList = userNameList;

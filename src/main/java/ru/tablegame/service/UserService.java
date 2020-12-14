@@ -1,6 +1,7 @@
 package ru.tablegame.service;
 
 import ru.tablegame.controller.dto.CharacterDto;
+import ru.tablegame.controller.dto.UserDto;
 import ru.tablegame.model.Game;
 import ru.tablegame.model.Role;
 import ru.tablegame.model.User;
@@ -12,6 +13,37 @@ import java.util.List;
  * @author Asus 14.10.2020
  */
 public interface UserService {
+
+    /**
+     * регистрация пользователя
+     *
+     * @param userDto - карточка пользователя с формы регистрации
+     * @return
+     */
+    UserDto regUser(UserDto userDto);
+
+    /**
+     * поиск пользователя
+     *
+     * @param id - id юзера в системе
+     * @return - карточка юзера
+     */
+    UserDto getUser(UUID id);
+
+    /**
+     * обновление пользователя
+     *
+     * @param userDto - карточка юзера
+     */
+    void updateUser(UserDto userDto);
+
+    /**
+     * удаление пользователя
+     *
+     * @param id - id юзера в системе
+     */
+    void deleteUser(UUID id);
+
     /**
      * добавить пользователя
      *

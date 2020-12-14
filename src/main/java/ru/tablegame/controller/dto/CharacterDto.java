@@ -2,8 +2,9 @@ package ru.tablegame.controller.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.Objects;
+import ru.tablegame.model.Characteristics;
+import ru.tablegame.model.CharacteristicsBase;
+import ru.tablegame.model.Inventory;
 
 /**
  *  получение карточки персонажа с контролера
@@ -37,22 +38,27 @@ public class CharacterDto {
     private String characterName;
 
     /**
-     * список характеристик для
+     * список характеристик для персонажа
      */
-    private CharacteristicsDto characteristicsDto;
+    private Characteristics characteristics;
 
+    /**
+     * базовый список характеристик для персонажа
+     */
+    private CharacteristicsBase characteristicsBase;
     /**
      * уровень персонажа
      */
     private int level;
 
     /**
+     * инвентарь персонажа
+     */
+    private Inventory inventory;
+
+    /**
      * название игры
      */
     private String gameName;
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, userName, characterName, characteristicsDto, level, gameName);
-    }
 }

@@ -3,7 +3,7 @@ package ru.tablegame.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.tablegame.controller.dto.CharacterDto;
-import ru.tablegame.controller.dto.CharacteristicsDto;
+import ru.tablegame.controller.dto.UserDto;
 import ru.tablegame.dao.UserDAO;
 import ru.tablegame.model.Character;
 import ru.tablegame.model.Game;
@@ -34,6 +34,38 @@ public class UserServiceImpl implements UserService {
     @PostConstruct
     public void postConstruct() {
         log.info("postConstruct");
+    }
+
+    @Override
+    public UserDto regUser(UserDto userDto) {
+        User user = new User(UUID.randomUUID(), userDto.getUsername(), userDto.getPassword());
+        userDAO.save(user);
+        userDto.setId(user.getId());
+        return userDto;
+    }
+
+    @Override
+    public UserDto getUser(UUID id) {
+        User user = userDAO.getByPK(id);
+        UserDto userDto = new UserDto();
+        userDto.setId(user.getId());
+        userDto.setUsername(user.getUsername());
+        userDto.setPassword(user.getPassword());
+        userDto.setStatus(user.getUserStatus().getDescription());
+        return userDto;
+    }
+
+    @Override
+    public void updateUser(UserDto userDto) {
+        User user = userDAO.getByPK(userDto.getId());
+        user.setUsername(userDto.getUsername());
+        user.setPassword(userDto.getPassword());
+        user.setUserStatus(UserStatus.getStatusByDesc(userDto.getStatus()));
+    }
+
+    @Override
+    public void deleteUser(UUID id) {
+        userDAO.deleteByPK(id);
     }
 
     @Override
@@ -78,15 +110,7 @@ public class UserServiceImpl implements UserService {
             characterDto.setCharacterName(character.getCharacterName());
             characterDto.setGameName(gameName);
             characterDto.setLevel(character.getLevel());
-            characterDto.setCharacteristicsDto(new CharacteristicsDto(
-                    character.getCharacterName(),
-                    character.getCharacteristics().getStrength(),
-                    character.getCharacteristics().getDexterity(),
-                    character.getCharacteristics().getConstitution(),
-                    character.getCharacteristics().getIntelligent(),
-                    character.getCharacteristics().getWisdom(),
-                    character.getCharacteristics().getCharisma()
-            ));
+            characterDto.setCharacteristics(character.getCharacteristics());
             characterDtos.add(characterDto);
         }
         return characterDtos;

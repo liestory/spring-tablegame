@@ -34,6 +34,29 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    public GameDto getUser(Long id) {
+        Game game = gameDAO.getByPK(id);
+        GameDto gameDto = new GameDto();
+        gameDto.setId(game.getId());
+        gameDto.setGameName(game.getGameName());
+        gameDto.getUserNameList().addAll(game.getUsers());
+        return gameDto;
+    }
+
+    @Override
+    public void updateUser(GameDto gameDto) {
+        Game game = gameDAO.getByPK(gameDto.getId());
+        game.setId(gameDto.getId());
+        game.setGameName(gameDto.getGameName());
+        game.getUsers().addAll(gameDto.getUserNameList());
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        gameDAO.deleteByPK(id);
+    }
+
+    @Override
     public boolean changeStatusInTheGame(String game, GameStatus gameStatus) {
         GameStatus gameStatusBefore = gameDAO.getByName(game).getGameStatus();
         gameDAO.getByName(game).setGameStatus(gameStatus);
@@ -53,9 +76,10 @@ public class GameServiceImpl implements GameService {
     public GameDto updateUserToGame(String game, List<User> users) {
         gameDAO.addUserForGame(game, users);
         Game gameClass = gameDAO.getByName(game);
-        GameDto gameDto = new GameDto(gameClass.getId(),
-                gameClass.getGameName(),
-                gameClass.getUsers());
+        GameDto gameDto = new GameDto();
+        gameDto.setId(gameClass.getId());
+        gameDto.setGameName(gameClass.getGameName());
+        gameDto.getUserNameList().addAll(gameClass.getUsers());
         return gameDto;
     }
 

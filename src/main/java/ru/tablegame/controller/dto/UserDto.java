@@ -37,6 +37,11 @@ public class UserDto {
     private String repeatPassword;
 
     /**
+     * статус юзера
+     */
+    private String status;
+
+    /**
      * список персонажей
      */
     private List<Character> characterList;
@@ -44,8 +49,5 @@ public class UserDto {
     public UserDto() {
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(username, password, repeatPassword, characterList);
-    }
+
 }

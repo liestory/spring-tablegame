@@ -13,7 +13,7 @@ import java.util.UUID;
  *
  * @author nemykin 14.10.2020
  */
-public interface UserDAO extends GenericDAO<User, UUID>{
+public interface UserDAO extends GenericDAO<User, UUID> {
 
     /**
      * Получить данные по юзер по логину

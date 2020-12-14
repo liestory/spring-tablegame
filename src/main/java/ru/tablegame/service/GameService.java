@@ -5,6 +5,7 @@ import ru.tablegame.model.GameStatus;
 import ru.tablegame.model.User;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * сервисы по состояниям игр
@@ -20,6 +21,28 @@ public interface GameService {
      * @return - заполненая карта после создания
      */
     GameDto regGame(GameDto gameDto);
+
+    /**
+     * поиск игры
+     *
+     * @param id - id игры в системе
+     * @return - карточка игры
+     */
+    GameDto getUser(Long id);
+
+    /**
+     * обновление пользователя
+     *
+     * @param gameDto - карточка игры
+     */
+    void updateUser(GameDto gameDto);
+
+    /**
+     * удаление игры
+     *
+     * @param id - id игры в системе
+     */
+    void deleteUser(Long id);
 
     /**
      * обновить статус игры

@@ -1,5 +1,7 @@
 package ru.tablegame.model;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * статусы пользователей на играх
  *
@@ -21,5 +23,16 @@ public enum UserStatus {
 
     public String getDescription() {
         return description;
+    }
+
+    /**
+     * получить статус по его описания
+     * необходимо для мапинга значения приходящих с фронта
+     *
+     * @param desc -  описание состояния
+     * @return
+     */
+    public static UserStatus getStatusByDesc(@NotNull String desc) {
+        return UserStatus.valueOf(desc);
     }
 }
