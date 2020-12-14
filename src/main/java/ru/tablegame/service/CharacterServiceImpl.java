@@ -64,8 +64,8 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     @Override
-    public void killCharacter(CharacterDto characterDto) {
-        characterDAO.getCharacterByName(characterDto.getCharacterName()).setCharacterStatus(CharacterStatus.DEAD);
+    public void killCharacter(Long id) {
+        characterDAO.getByPK(id).setCharacterStatus(CharacterStatus.DEAD);
     }
 
 }

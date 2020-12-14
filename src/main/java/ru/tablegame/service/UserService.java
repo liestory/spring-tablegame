@@ -8,6 +8,7 @@ import ru.tablegame.model.User;
 import ru.tablegame.model.UserStatus;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author Asus 14.10.2020

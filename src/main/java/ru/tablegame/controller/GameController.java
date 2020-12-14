@@ -38,6 +38,7 @@ public class GameController {
      */
     @PostMapping()
     public ResponseEntity<GameDto> gameRegistration(@RequestBody GameDto gameDto) {
+        gameDtoValidator.validate(gameDto);
         gameService.regGame(gameDto);
         return new ResponseEntity<>(gameDto, HttpStatus.CREATED);
     }
@@ -51,6 +52,7 @@ public class GameController {
     //UPDATE
     @PutMapping
     public ResponseEntity updateCharacter(@RequestBody GameDto gameDto) {
+        gameDtoValidator.validate(gameDto);
         gameService.updateUser(gameDto);
         return new ResponseEntity(HttpStatus.OK);
     }
@@ -68,17 +70,20 @@ public class GameController {
      */
     @PostMapping(value = "/set_users")
     public ResponseEntity setUsersForGame(@RequestBody GameDto gameDto) {
+        gameDtoValidator.validate(gameDto);
         gameService.addUserToGame(gameDto.getGameName(), List.copyOf(gameDto.getUserNameList()));
         return new ResponseEntity(HttpStatus.OK);
     }
 
     @PostMapping(value = "/update_users")
     public ResponseEntity<GameDto> updateUsersForGame(@RequestBody GameDto gameDto) {
+        gameDtoValidator.validate(gameDto);
         return new ResponseEntity<>(gameService.updateUserToGame(gameDto.getGameName(), List.copyOf(gameDto.getUserNameList())), HttpStatus.OK);
     }
 
     @PostMapping(value = "/delete_users")
     public ResponseEntity deleteUsersForGame(@RequestBody GameDto gameDto) {
+        gameDtoValidator.validate(gameDto);
         gameService.deleteUserToGame(gameDto.getGameName(), List.copyOf(gameDto.getUserNameList()));
         return new ResponseEntity(HttpStatus.OK);
     }

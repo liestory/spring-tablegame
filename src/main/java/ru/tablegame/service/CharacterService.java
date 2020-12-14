@@ -41,7 +41,7 @@ public interface CharacterService {
     /**
      * убийство персонажа (перевод в статус смерть)
      *
-     * @param characterDto - карточка персонажа от клиента
+     * @param id - id персонажа
      */
-    void killCharacter(CharacterDto characterDto);
+    void killCharacter(Long id);
 }

@@ -26,14 +26,11 @@ import java.util.List;
 @Slf4j
 public class CharacterController {
     private CharacterService characterService;
-    private UserService userService;
     private CharacterDtoValidator characterDtoValidator;
 
     public CharacterController(CharacterService characterService,
-                               UserService userService,
                                CharacterDtoValidator characterDtoValidator) {
         this.characterService = characterService;
-        this.userService = userService;
         this.characterDtoValidator = characterDtoValidator;
     }
 
@@ -43,6 +40,7 @@ public class CharacterController {
     //create
     @PostMapping
     public ResponseEntity<CharacterDto> createCharacter(@RequestBody CharacterDto characterDto) {
+        characterDtoValidator.validate(characterDto);
         characterService.createCharacter(characterDto);
         return new ResponseEntity<>(characterDto, HttpStatus.CREATED);
     }
@@ -56,6 +54,7 @@ public class CharacterController {
     //UPDATE
     @PutMapping
     public ResponseEntity updateCharacter(@RequestBody CharacterDto characterDto) {
+        characterDtoValidator.validate(characterDto);
         characterService.updateCharacter(characterDto);
         return new ResponseEntity(HttpStatus.OK);
     }
@@ -68,9 +67,9 @@ public class CharacterController {
     }
 
     //данный метод нужен, тк я не подразумеваю удаление персонажей в моем прилоэении.
-    @PostMapping("/kill")
-    public ResponseEntity killCharacter(@RequestBody CharacterDto characterDto) {
-        characterService.killCharacter(characterDto);
+    @PostMapping("/kill/{id}")
+    public ResponseEntity killCharacter(@PathVariable("id") Long id) {
+        characterService.killCharacter(id);
         return new ResponseEntity(HttpStatus.OK);
     }
 }
