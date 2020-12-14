@@ -3,6 +3,8 @@ package ru.tablegame.service;
 import ru.tablegame.controller.dto.CharacterDto;
 
 /**
+ * сервис по работе с персонажами
+ *
  * @author nemykin 08.12.2020
  */
 public interface CharacterService {
@@ -41,7 +43,7 @@ public interface CharacterService {
     /**
      * убийство персонажа (перевод в статус смерть)
      *
-     * @param characterDto - карточка персонажа от клиента
+     * @param id - id карточки персонажа
      */
-    void killCharacter(CharacterDto characterDto);
+    void killCharacter(Long id);
 }

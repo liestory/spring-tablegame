@@ -7,6 +7,8 @@ import ru.tablegame.dao.CharacterDAO;
 import ru.tablegame.model.Character;
 import ru.tablegame.model.CharacterStatus;
 
+import java.util.Random;
+
 /**
  * @author nemykin 08.12.2020
  */
@@ -24,7 +26,7 @@ public class CharacterServiceImpl implements CharacterService {
     @Override
     public CharacterDto createCharacter(CharacterDto characterDto) {
         Character character = new Character();
-        character.setId(characterDto.getId());
+        character.setId(new Random().nextLong());
         character.setCharacterName(characterDto.getCharacterName());
         character.setCharacteristics(characterDto.getCharacteristics());
         character.setCharacteristicsBase(characterDto.getCharacteristicsBase());
@@ -62,8 +64,8 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     @Override
-    public void killCharacter(CharacterDto characterDto) {
-        characterDAO.getCharacterByName(characterDto.getCharacterName()).setCharacterStatus(CharacterStatus.DEAD);
+    public void killCharacter(Long id) {
+        characterDAO.getByPK(id).setCharacterStatus(CharacterStatus.DEAD);
     }
 
 }

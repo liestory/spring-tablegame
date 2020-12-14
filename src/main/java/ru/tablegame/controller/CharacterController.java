@@ -61,9 +61,9 @@ public class CharacterController {
     }
 
     //данный метод нужен, тк я не подразумеваю удаление персонажей в моем прилоэении.
-    @PostMapping("/kill")
-    public ResponseEntity killCharacter(@RequestBody CharacterDto characterDto) {
-        characterService.killCharacter(characterDto);
+    @PostMapping("/kill/{id}")
+    public ResponseEntity killCharacter(@PathVariable("id") Long id) {
+        characterService.killCharacter(id);
         return new ResponseEntity(HttpStatus.OK);
     }
 }

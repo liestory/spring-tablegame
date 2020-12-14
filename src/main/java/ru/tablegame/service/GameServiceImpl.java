@@ -9,6 +9,7 @@ import ru.tablegame.model.GameStatus;
 import ru.tablegame.model.User;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author Asus 14.10.2020
@@ -26,7 +27,7 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public GameDto regGame(GameDto gameDto) {
-        Game game = new Game(gameDto.getId(), gameDto.getGameName());
+        Game game = new Game(new Random().nextLong(), gameDto.getGameName());
         gameDAO.save(game);
         gameDto.setId(game.getId());
         return gameDto;

@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.UUID;
 
 /**
+ * сервис по работе с юзерами
+ *
  * @author Asus 14.10.2020
  */
 public interface UserService {
