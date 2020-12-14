@@ -41,12 +41,14 @@ public class UserDto {
     private String repeatPassword;
 
     /**
+     * статус юзера
+     */
+    private String status;
+
+    /**
      * список ошибок
      */
     private List<ObjectError> errors;
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(username, password, repeatPassword);
-    }
+
 }

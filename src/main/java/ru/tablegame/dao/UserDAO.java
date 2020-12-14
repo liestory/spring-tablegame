@@ -13,7 +13,7 @@ import java.util.UUID;
  *
  * @author nemykin 14.10.2020
  */
-public interface UserDAO extends GenericDAO<User, UUID>{
+public interface UserDAO extends GenericDAO<User, UUID> {
 
     /**
      * Получить данные по юзер по логину
@@ -33,11 +33,28 @@ public interface UserDAO extends GenericDAO<User, UUID>{
     Role getRoleByLogin(String name, String gameName);
 
     /**
+     * получить всех персонажа по его логину
+     *
+     * @param name -  логин пользователя
+     * @return -  список карточек персонажа c привязкой к играм
+     */
+    Map<Game, Character> getCharacterByLogin(String name);
+
+    /**
      * получить список персонажей по его
      *
      * @param userId   - id юзера в системе
      * @param gameName - название игры
-     * @return
+     * @return - список карточек персонажа c привязкой к играм
      */
     Map<Game, Character> getCharacterByUserIdAndGameName(UUID userId, String gameName);
+
+    /**
+     * получить список персонажей по его
+     *
+     * @param userName - логин пользователя
+     * @param gameName - название игры
+     * @return - список карточек персонажа c привязкой к играм
+     */
+    Map<Game, Character> getCharacterByUserNameAndGameName(String userName, String gameName);
 }

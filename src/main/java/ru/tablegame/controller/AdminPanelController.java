@@ -31,10 +31,6 @@ public class AdminPanelController {
     @RequestMapping(value = "/change_status", method = RequestMethod.POST)
     public UserDto userRegistration(@Validated @RequestBody UserDto userDto, BindingResult result
             /*, HttpServletRequest httpServletRequest*/) {
-        if (result.hasErrors()) {
-            userDto.setErrors(result.getAllErrors());
-            return userDto;
-        }
         //TODO: подумать о том как правильно сделать тут DTO для настройки админом других пользователей
        // userService.changeRole(userDto);
         return userDto;

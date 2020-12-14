@@ -1,25 +1,25 @@
 package ru.tablegame.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.validation.BindingResult;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.tablegame.service.UserService;
 import ru.tablegame.controller.dto.CharacterDto;
 import ru.tablegame.service.CharacterService;
-
-import java.util.List;
-import java.util.UUID;
+import ru.tablegame.service.UserService;
 
 /**
  * @author nemykin 08.12.2020
  */
 @RestController
-@RequestMapping("/api/character")
+@RequestMapping("/api/v1/character")
 @Slf4j
 public class CharacterController {
     private CharacterService characterService;
@@ -30,26 +30,40 @@ public class CharacterController {
         this.userService = userService;
     }
 
-    @PostMapping(value = "/create")
-    public CharacterDto userRegistration(@RequestBody CharacterDto characterDto, BindingResult result) {
-        if (result.hasErrors()) {
-            characterDto.setErrors(result.getAllErrors());
-            return characterDto;
-        }
+    /**
+     * блок CRUD
+     */
+    //create
+    @PostMapping
+    public ResponseEntity<CharacterDto> createCharacter(@RequestBody CharacterDto characterDto) {
         characterService.createCharacter(characterDto);
-        return characterDto;
+        return new ResponseEntity<>(characterDto, HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/get")
-    public List<CharacterDto> getCharacter(@RequestParam("id") UUID userId,
-                                           @RequestParam("game") String gameName,
-                                           BindingResult result) {
-        return userService.getCharacterByUserIdAndGameName(userId, gameName);
+    //GET
+    @GetMapping("{id}")
+    public ResponseEntity<CharacterDto> getCharacter(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(characterService.getCharacter(id), HttpStatus.FOUND);
     }
 
-    @PostMapping(value = "/kill")
-    public void killCharacter(@RequestBody CharacterDto characterDto, BindingResult result) {
+    //UPDATE
+    @PutMapping
+    public ResponseEntity updateCharacter(@RequestBody CharacterDto characterDto) {
+        characterService.updateCharacter(characterDto);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    //delete
+    @DeleteMapping("{id}")
+    public ResponseEntity deleteCharacter(@PathVariable("id") Long id) {
+        characterService.deleteCharacter(id);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    //данный метод нужен, тк я не подразумеваю удаление персонажей в моем прилоэении.
+    @PostMapping("/kill")
+    public ResponseEntity killCharacter(@RequestBody CharacterDto characterDto) {
         characterService.killCharacter(characterDto);
-
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

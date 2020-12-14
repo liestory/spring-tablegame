@@ -6,7 +6,6 @@ import ru.tablegame.controller.dto.CharacterDto;
 import ru.tablegame.dao.CharacterDAO;
 import ru.tablegame.model.Character;
 import ru.tablegame.model.CharacterStatus;
-import ru.tablegame.model.CharacteristicsBase;
 
 /**
  * @author nemykin 08.12.2020
@@ -24,18 +23,42 @@ public class CharacterServiceImpl implements CharacterService {
 
     @Override
     public CharacterDto createCharacter(CharacterDto characterDto) {
-        Character character = new Character(characterDto.getId(),
-                characterDto.getCharacterName(),
-                characterDto.getLevel(),
-                new CharacteristicsBase(characterDto.getCharacteristicsDto().getStrength(),
-                        characterDto.getCharacteristicsDto().getDexterity(),
-                        characterDto.getCharacteristicsDto().getConstitution(),
-                        characterDto.getCharacteristicsDto().getIntelligent(),
-                        characterDto.getCharacteristicsDto().getWisdom(),
-                        characterDto.getCharacteristicsDto().getCharisma()));
+        Character character = new Character();
+        character.setId(characterDto.getId());
+        character.setCharacterName(characterDto.getCharacterName());
+        character.setCharacteristics(characterDto.getCharacteristics());
+        character.setCharacteristicsBase(characterDto.getCharacteristicsBase());
+        character.setLevel(characterDto.getLevel());
+        character.setInventory(characterDto.getInventory());
         characterDAO.save(character);
         characterDto.setId(character.getId());
         return characterDto;
+    }
+
+    @Override
+    public CharacterDto getCharacter(Long id) {
+        Character character = characterDAO.getByPK(id);
+        CharacterDto characterDto = new CharacterDto();
+        characterDto.setId(character.getId());
+        characterDto.setCharacterName(character.getCharacterName());
+        characterDto.setLevel(character.getLevel());
+        return characterDto;
+    }
+
+    @Override
+    public void updateCharacter(CharacterDto characterDto) {
+        Character character = characterDAO.getByPK(characterDto.getId());
+        character.setCharacterName(characterDto.getCharacterName());
+        character.setCharacteristics(characterDto.getCharacteristics());
+        character.setCharacteristicsBase(characterDto.getCharacteristicsBase());
+        character.setLevel(characterDto.getLevel());
+        character.setInventory(characterDto.getInventory());
+        characterDAO.update(character);
+    }
+
+    @Override
+    public void deleteCharacter(Long id) {
+        characterDAO.deleteByPK(id);
     }
 
     @Override

@@ -2,11 +2,8 @@ package ru.tablegame.controller.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.validation.ObjectError;
 import ru.tablegame.model.User;
 
-import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -18,9 +15,6 @@ import java.util.Set;
 @Setter
 public class GameDto {
 
-    public GameDto() {
-    }
-
     /**
      * id игры
      */
@@ -29,21 +23,19 @@ public class GameDto {
     /**
      * название игры
      */
-
     private String gameName;
 
     /**
      * юзаеры в этой игре
      */
-    private Set<User> users;
+    private Set<User> userNameList;
 
-    /**
-     * список ошибок
-     */
-    private List<ObjectError> errors;
+    public GameDto() {
+    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, gameName, users);
+    public GameDto(Long id, String gameName, Set<User> userNameList) {
+        this.id = id;
+        this.gameName = gameName;
+        this.userNameList = userNameList;
     }
 }
