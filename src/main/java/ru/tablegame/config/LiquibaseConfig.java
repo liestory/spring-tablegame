@@ -1,4 +1,4 @@
-package tablegame.config;
+package ru.tablegame.config;
 
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.context.annotation.Bean;
