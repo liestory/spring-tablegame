@@ -22,7 +22,7 @@ import java.util.UUID;
  * @author nemykin 28.10.2020
  */
 @RestController
-@RequestMapping("/api/registration")
+@RequestMapping("/api/v1/user")
 @Slf4j
 public class UserController {
 
