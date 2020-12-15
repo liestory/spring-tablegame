@@ -29,7 +29,8 @@ public class GameController {
     private GameService gameService;
     private GameDtoValidator gameDtoValidator;
 
-    public GameController(GameService gameService, GameDtoValidator gameDtoValidator) {
+    public GameController(GameService gameService,
+                          GameDtoValidator gameDtoValidator) {
         this.gameService = gameService;
     }
     //GET, PUT, POST, DELETE
@@ -40,6 +41,7 @@ public class GameController {
     @PostMapping()
     public ResponseEntity<GameDto> gameRegistration(@RequestBody GameDto gameDto, UriComponentsBuilder componentsBuilder) {
         log.info("create with {} - start ", gameDto);
+        gameDtoValidator.validate(gameDto);
         var result = gameService.regGame(gameDto);
         var uri = componentsBuilder.path("/api/v1/user/" + result.getId()).buildAndExpand(result).toUri();
         log.info("create with {} - end", result);
@@ -62,6 +64,7 @@ public class GameController {
         if (!Objects.equals(id, gameDto.getId())) {
             throw new IllegalArgumentException("id=" + gameDto.getId() + ": expected same as " + id);
         }
+        gameDtoValidator.validate(gameDto);
         var result = gameService.updateGame(gameDto);
         log.info("update with {} - end", result);
         return ResponseEntity.ok().body(result);

@@ -43,6 +43,7 @@ public class CharacterController {
     @PostMapping
     public ResponseEntity<CharacterDto> createCharacter(@RequestBody CharacterDto characterDto, UriComponentsBuilder componentsBuilder) {
         log.info("create with {} - start ", characterDto);
+        characterDtoValidator.validate(characterDto);
         var result = characterService.createCharacter(characterDto);
         var uri = componentsBuilder.path("/api/v1/user/" + result.getId()).buildAndExpand(result).toUri();
         log.info("create with {} - end", result);
@@ -65,6 +66,7 @@ public class CharacterController {
         if (!Objects.equals(id, characterDto.getId())) {
             throw new IllegalArgumentException("id= " + characterDto.getId() + ": expected same as " + id);
         }
+        characterDtoValidator.validate(characterDto);
         var result = characterService.updateCharacter(characterDto);
         log.info("update with {} - end", result);
         return ResponseEntity.ok().body(result);
@@ -86,6 +88,7 @@ public class CharacterController {
         if (!Objects.equals(id, characterDto.getId())) {
             throw new IllegalArgumentException("id= " + characterDto.getId() + ": expected same as " + id);
         }
+        characterDtoValidator.validate(characterDto);
         characterService.changeStatusCharacter(id, characterDto);
         log.info("change status with {} - end", id);
         return new ResponseEntity(HttpStatus.OK);
