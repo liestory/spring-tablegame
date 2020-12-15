@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 import ru.tablegame.controller.dto.UserDto;
 import ru.tablegame.service.UserService;
 import ru.tablegame.validator.UserDtoValidator;
 
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -38,30 +40,43 @@ public class UserController {
      */
     //create
     @PostMapping
-    public ResponseEntity<UserDto> createCharacter(@RequestBody UserDto userDto) {
+    public ResponseEntity<UserDto> createCharacter(@RequestBody UserDto userDto, UriComponentsBuilder componentsBuilder) {
+        log.info("create with {} - start ", userDto);
         userDtoValidator.validate(userDto);
-        userService.regUser(userDto);
-        return new ResponseEntity<>(userDto, HttpStatus.CREATED);
+        var result = userService.regUser(userDto);
+        var uri = componentsBuilder.path("/api/v1/user/" + result.getId()).buildAndExpand(result).toUri();
+        log.info("create with {} - end", result);
+        return ResponseEntity.created(uri).body(result);
     }
 
     //GET
     @GetMapping("{id}")
     public ResponseEntity<UserDto> getCharacter(@PathVariable("id") UUID id) {
-        return new ResponseEntity<>(userService.getUser(id), HttpStatus.FOUND);
+        log.info("get with {} - start ", id);
+        var result = userService.getUser(id);
+        log.info("get end with {}, with result {}", id, result);
+        return ResponseEntity.ok().body(result);
     }
 
     //UPDATE
-    @PutMapping
-    public ResponseEntity updateCharacter(@RequestBody UserDto userDto) {
+    @PutMapping("{id}")
+    public ResponseEntity updateCharacter(@RequestBody UserDto userDto, @PathVariable("id") UUID id) {
+        log.info("update with {} - start ", userDto);
+        if (!Objects.equals(id, userDto.getId())) {
+            throw new IllegalArgumentException("id=" + userDto.getId() + ": expected same as " + id);
+        }
         userDtoValidator.validate(userDto);
-        userService.updateUser(userDto);
-        return new ResponseEntity(HttpStatus.OK);
+        var result = userService.updateUser(userDto);
+        log.info("update with {} - end", result);
+        return ResponseEntity.ok().body(result);
     }
 
     //delete
     @DeleteMapping("{id}")
     public ResponseEntity deleteCharacter(@PathVariable("id") UUID id) {
+        log.info("delete with {} - start ", id);
         userService.deleteUser(id);
+        log.info("delete end with {}", id);
         return new ResponseEntity(HttpStatus.OK);
     }
 }

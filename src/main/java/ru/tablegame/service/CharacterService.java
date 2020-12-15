@@ -29,8 +29,9 @@ public interface CharacterService {
      * персонажа
      *
      * @param characterDto - карточка персонажа
+     * @return - обновленная карточка для клиента
      */
-    void updateCharacter(CharacterDto characterDto);
+    CharacterDto updateCharacter(CharacterDto characterDto);
 
     /**
      * удаление персонажа
@@ -46,4 +47,12 @@ public interface CharacterService {
      * @param id - id карточки персонажа
      */
     void killCharacter(Long id);
+
+    /**
+     * изменения статуса персонажа (перевод в статус смерть)
+     *
+     * @param id           - id карточки персонажа
+     * @param characterDto - карточка персонажа
+     */
+    void changeStatusCharacter(Long id, CharacterDto characterDto);
 }
