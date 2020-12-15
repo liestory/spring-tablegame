@@ -57,4 +57,9 @@ public class CharacterDto {
      */
     private String gameName;
 
+    /**
+     * описание статуса персонажа
+     */
+    private String statusDesc;
+
 }

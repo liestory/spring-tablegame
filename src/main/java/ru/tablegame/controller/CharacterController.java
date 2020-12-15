@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 import ru.tablegame.controller.dto.CharacterDto;
 import ru.tablegame.service.CharacterService;
-import ru.tablegame.service.UserService;
+
+import java.util.Objects;
 
 /**
  * @author nemykin 08.12.2020
@@ -23,11 +25,9 @@ import ru.tablegame.service.UserService;
 @Slf4j
 public class CharacterController {
     private CharacterService characterService;
-    private UserService userService;
 
-    public CharacterController(CharacterService characterService, UserService userService) {
+    public CharacterController(CharacterService characterService) {
         this.characterService = characterService;
-        this.userService = userService;
     }
 
     /**
@@ -35,35 +35,53 @@ public class CharacterController {
      */
     //create
     @PostMapping
-    public ResponseEntity<CharacterDto> createCharacter(@RequestBody CharacterDto characterDto) {
-        characterService.createCharacter(characterDto);
-        return new ResponseEntity<>(characterDto, HttpStatus.CREATED);
+    public ResponseEntity<CharacterDto> createCharacter(@RequestBody CharacterDto characterDto, UriComponentsBuilder componentsBuilder) {
+        log.info("create with {} - start ", characterDto);
+        var result = characterService.createCharacter(characterDto);
+        var uri = componentsBuilder.path("/api/v1/user/" + result.getId()).buildAndExpand(result).toUri();
+        log.info("create with {} - end", result);
+        return ResponseEntity.created(uri).body(result);
     }
 
     //GET
     @GetMapping("{id}")
     public ResponseEntity<CharacterDto> getCharacter(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(characterService.getCharacter(id), HttpStatus.FOUND);
+        log.info("get with {} - start ", id);
+        var result = characterService.getCharacter(id);
+        log.info("get end with {}, with result {}", id, result);
+        return ResponseEntity.ok().body(result);
     }
 
     //UPDATE
-    @PutMapping
-    public ResponseEntity updateCharacter(@RequestBody CharacterDto characterDto) {
-        characterService.updateCharacter(characterDto);
-        return new ResponseEntity(HttpStatus.OK);
+    @PutMapping("{id}")
+    public ResponseEntity<CharacterDto> updateCharacter(@RequestBody CharacterDto characterDto, @PathVariable("id") Long id) {
+        log.info("update with {} - start", characterDto);
+        if (!Objects.equals(id, characterDto.getId())) {
+            throw new IllegalArgumentException("id= " + characterDto.getId() + ": expected same as " + id);
+        }
+        var result = characterService.updateCharacter(characterDto);
+        log.info("update with {} - end", result);
+        return ResponseEntity.ok().body(result);
     }
 
     //delete
     @DeleteMapping("{id}")
     public ResponseEntity deleteCharacter(@PathVariable("id") Long id) {
+        log.info("delete with {} - start ", id);
         characterService.deleteCharacter(id);
+        log.info("delete end with {}", id);
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    //данный метод нужен, тк я не подразумеваю удаление персонажей в моем прилоэении.
-    @PostMapping("/kill/{id}")
-    public ResponseEntity killCharacter(@PathVariable("id") Long id) {
-        characterService.killCharacter(id);
+    //данный метод нужен, тк я не подразумеваю удаление персонажей в моем приложении.
+    @PostMapping("{id}/status")
+    public ResponseEntity changeStatusCharacter(@RequestBody CharacterDto characterDto, @PathVariable("id") Long id) {
+        log.info("change status with {} - start", characterDto);
+        if (!Objects.equals(id, characterDto.getId())) {
+            throw new IllegalArgumentException("id= " + characterDto.getId() + ": expected same as " + id);
+        }
+        characterService.changeStatusCharacter(id, characterDto);
+        log.info("change status with {} - end", id);
         return new ResponseEntity(HttpStatus.OK);
     }
 }

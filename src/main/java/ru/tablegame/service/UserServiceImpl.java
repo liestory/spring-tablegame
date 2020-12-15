@@ -57,11 +57,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(UserDto userDto) {
+    public UserDto updateUser(UserDto userDto) {
         User user = userDAO.getByPK(userDto.getId());
         user.setUsername(userDto.getUsername());
         user.setPassword(userDto.getPassword());
         user.setUserStatus(UserStatus.getStatusByDesc(userDto.getStatus()));
+        return userDto;
     }
 
     @Override

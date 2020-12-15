@@ -34,7 +34,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public GameDto getUser(Long id) {
+    public GameDto getGame(Long id) {
         Game game = gameDAO.getByPK(id);
         GameDto gameDto = new GameDto();
         gameDto.setId(game.getId());
@@ -44,15 +44,16 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public void updateUser(GameDto gameDto) {
+    public GameDto updateGame(GameDto gameDto) {
         Game game = gameDAO.getByPK(gameDto.getId());
         game.setId(gameDto.getId());
         game.setGameName(gameDto.getGameName());
         game.getUsers().addAll(gameDto.getUserNameList());
+        return gameDto;
     }
 
     @Override
-    public void deleteUser(Long id) {
+    public void deleteGame(Long id) {
         gameDAO.deleteByPK(id);
     }
 

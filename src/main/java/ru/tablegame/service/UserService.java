@@ -37,8 +37,9 @@ public interface UserService {
      * обновление пользователя
      *
      * @param userDto - карточка юзера
+     * @return - карточка юзера
      */
-    void updateUser(UserDto userDto);
+    UserDto updateUser(UserDto userDto);
 
     /**
      * удаление пользователя

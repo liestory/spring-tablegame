@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 import ru.tablegame.controller.dto.GameDto;
 import ru.tablegame.service.GameService;
 
-import java.util.List;
+import java.util.Objects;
 
 /**
  * @author nemykin 09.12.2020
@@ -35,50 +36,41 @@ public class GameController {
      * блок CRUD
      */
     @PostMapping()
-    public ResponseEntity<GameDto> gameRegistration(@RequestBody GameDto gameDto) {
-        gameService.regGame(gameDto);
-        return new ResponseEntity<>(gameDto, HttpStatus.CREATED);
+    public ResponseEntity<GameDto> gameRegistration(@RequestBody GameDto gameDto, UriComponentsBuilder componentsBuilder) {
+        log.info("create with {} - start ", gameDto);
+        var result = gameService.regGame(gameDto);
+        var uri = componentsBuilder.path("/api/v1/user/" + result.getId()).buildAndExpand(result).toUri();
+        log.info("create with {} - end", result);
+        return ResponseEntity.created(uri).body(result);
     }
 
     //GET
     @GetMapping("{id}")
-    public ResponseEntity<GameDto> getCharacter(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(gameService.getUser(id), HttpStatus.FOUND);
+    public ResponseEntity<GameDto> getGame(@PathVariable("id") Long id) {
+        log.info("get with {} - start ", id);
+        var result = gameService.getGame(id);
+        log.info("get end with {}, with result {}", id, result);
+        return ResponseEntity.ok().body(result);
     }
 
     //UPDATE
-    @PutMapping
-    public ResponseEntity updateCharacter(@RequestBody GameDto gameDto) {
-        gameService.updateUser(gameDto);
-        return new ResponseEntity(HttpStatus.OK);
+    @PutMapping("{id}")
+    public ResponseEntity updateGame(@RequestBody GameDto gameDto, @PathVariable("id") Long id) {
+        log.info("update with {} - start ", gameDto);
+        if (!Objects.equals(id, gameDto.getId())) {
+            throw new IllegalArgumentException("id=" + gameDto.getId() + ": expected same as " + id);
+        }
+        var result = gameService.updateGame(gameDto);
+        log.info("update with {} - end", result);
+        return ResponseEntity.ok().body(result);
     }
 
     //delete
     @DeleteMapping("{id}")
-    public ResponseEntity deleteCharacter(@PathVariable("id") Long id) {
-        gameService.deleteUser(id);
+    public ResponseEntity deleteGame(@PathVariable("id") Long id) {
+        log.info("delete with {} - start ", id);
+        gameService.deleteGame(id);
+        log.info("delete end with {}", id);
         return new ResponseEntity(HttpStatus.OK);
     }
-
-    /**
-     * для будущего расширения! пока они не важны
-     * TODO: надо лучше обдумать верно ли я добавляю юзеров в системе в игры.
-     */
-    @PostMapping(value = "/set_users")
-    public ResponseEntity setUsersForGame(@RequestBody GameDto gameDto) {
-        gameService.addUserToGame(gameDto.getGameName(), List.copyOf(gameDto.getUserNameList()));
-        return new ResponseEntity(HttpStatus.OK);
-    }
-
-    @PostMapping(value = "/update_users")
-    public ResponseEntity<GameDto> updateUsersForGame(@RequestBody GameDto gameDto) {
-        return new ResponseEntity<>(gameService.updateUserToGame(gameDto.getGameName(), List.copyOf(gameDto.getUserNameList())), HttpStatus.OK);
-    }
-
-    @PostMapping(value = "/delete_users")
-    public ResponseEntity deleteUsersForGame(@RequestBody GameDto gameDto) {
-        gameService.deleteUserToGame(gameDto.getGameName(), List.copyOf(gameDto.getUserNameList()));
-        return new ResponseEntity(HttpStatus.OK);
-    }
-
 }
