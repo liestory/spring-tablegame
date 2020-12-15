@@ -27,21 +27,21 @@ public interface GameService {
      * @param id - id игры в системе
      * @return - карточка игры
      */
-    GameDto getUser(Long id);
+    GameDto getGame(Long id);
 
     /**
      * обновление пользователя
      *
      * @param gameDto - карточка игры
      */
-    void updateUser(GameDto gameDto);
+    GameDto updateGame(GameDto gameDto);
 
     /**
      * удаление игры
      *
      * @param id - id игры в системе
      */
-    void deleteUser(Long id);
+    void deleteGame(Long id);
 
     /**
      * обновить статус игры

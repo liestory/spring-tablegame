@@ -48,7 +48,7 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     @Override
-    public void updateCharacter(CharacterDto characterDto) {
+    public CharacterDto updateCharacter(CharacterDto characterDto) {
         Character character = characterDAO.getByPK(characterDto.getId());
         character.setCharacterName(characterDto.getCharacterName());
         character.setCharacteristics(characterDto.getCharacteristics());
@@ -56,6 +56,7 @@ public class CharacterServiceImpl implements CharacterService {
         character.setLevel(characterDto.getLevel());
         character.setInventory(characterDto.getInventory());
         characterDAO.update(character);
+        return characterDto;
     }
 
     @Override
@@ -68,4 +69,8 @@ public class CharacterServiceImpl implements CharacterService {
         characterDAO.getByPK(id).setCharacterStatus(CharacterStatus.DEAD);
     }
 
+    @Override
+    public void changeStatusCharacter(Long id, CharacterDto characterDto) {
+        characterDAO.getByPK(id).setCharacterStatus(CharacterStatus.getStatusByDesc(characterDto.getStatusDesc()));
+    }
 }
