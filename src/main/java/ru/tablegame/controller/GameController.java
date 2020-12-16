@@ -39,7 +39,7 @@ public class GameController {
     public ResponseEntity<GameDto> gameRegistration(@RequestBody GameDto gameDto, UriComponentsBuilder componentsBuilder) {
         log.info("create with {} - start ", gameDto);
         var result = gameService.regGame(gameDto);
-        var uri = componentsBuilder.path("/api/v1/user/" + result.getId()).buildAndExpand(result).toUri();
+        var uri = componentsBuilder.path("/api/v1/game/" + result.getId()).buildAndExpand(result).toUri();
         log.info("create with {} - end", result);
         return ResponseEntity.created(uri).body(result);
     }

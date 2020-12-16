@@ -38,7 +38,7 @@ public class CharacterController {
     public ResponseEntity<CharacterDto> createCharacter(@RequestBody CharacterDto characterDto, UriComponentsBuilder componentsBuilder) {
         log.info("create with {} - start ", characterDto);
         var result = characterService.createCharacter(characterDto);
-        var uri = componentsBuilder.path("/api/v1/user/" + result.getId()).buildAndExpand(result).toUri();
+        var uri = componentsBuilder.path("/api/v1/character/" + result.getId()).buildAndExpand(result).toUri();
         log.info("create with {} - end", result);
         return ResponseEntity.created(uri).body(result);
     }
