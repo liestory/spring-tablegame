@@ -1,6 +1,5 @@
 package ru.tablegame.model;
 
-import java.util.AbstractMap;
 import java.util.Map;
 import java.util.UUID;
 

@@ -31,9 +31,14 @@ public enum ItemStatus {
      * необходимо для мапинга значения приходящих с фронта
      *
      * @param desc -  описание состояния
-     * @return
+     * @return - enum ItemStatus
      */
     public static ItemStatus getStatusByDesc(@NotNull String desc) {
-        return ItemStatus.valueOf(desc);
+        for (ItemStatus itemStatus : ItemStatus.values()) {
+            if (itemStatus.description.equals(desc)) {
+                return itemStatus;
+            }
+        }
+        return null;
     }
 }

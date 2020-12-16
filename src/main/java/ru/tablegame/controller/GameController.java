@@ -32,6 +32,7 @@ public class GameController {
     public GameController(GameService gameService,
                           GameDtoValidator gameDtoValidator) {
         this.gameService = gameService;
+        this.gameDtoValidator = gameDtoValidator;
     }
     //GET, PUT, POST, DELETE
 
@@ -43,7 +44,7 @@ public class GameController {
         log.info("create with {} - start ", gameDto);
         gameDtoValidator.validate(gameDto);
         var result = gameService.regGame(gameDto);
-        var uri = componentsBuilder.path("/api/v1/user/" + result.getId()).buildAndExpand(result).toUri();
+        var uri = componentsBuilder.path("/api/v1/game/" + result.getId()).buildAndExpand(result).toUri();
         log.info("create with {} - end", result);
         return ResponseEntity.created(uri).body(result);
     }
