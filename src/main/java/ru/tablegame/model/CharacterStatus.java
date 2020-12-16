@@ -34,9 +34,14 @@ public enum CharacterStatus {
      * необходимо для мапинга значения приходящих с фронта
      *
      * @param desc -  описание состояния
-     * @return
+     * @return - enum CharacterStatus
      */
     public static CharacterStatus getStatusByDesc(@NotNull String desc) {
-        return CharacterStatus.valueOf(desc);
+        for (CharacterStatus characterStatus : CharacterStatus.values()) {
+            if (characterStatus.description.equals(desc)) {
+                return characterStatus;
+            }
+        }
+        return null;
     }
 }

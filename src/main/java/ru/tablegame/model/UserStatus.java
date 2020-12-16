@@ -30,7 +30,7 @@ public enum UserStatus {
      * необходимо для мапинга значения приходящих с фронта
      *
      * @param desc -  описание состояния
-     * @return
+     * @return - enum UserStatus
      */
     public static UserStatus getStatusByDesc(@NotNull String desc) {
         for (UserStatus userStatus : UserStatus.values()) {
