@@ -2,9 +2,11 @@ package ru.tablegame.controller.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import ru.tablegame.model.User;
 
-import java.util.Set;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * объекты для юзера получаемые с контролеров
@@ -13,7 +15,9 @@ import java.util.Set;
  */
 @Getter
 @Setter
-public class GameDto {
+@ToString
+public class GameDto implements Serializable {
+    private static final long serialVersionUID = -619218161382592660L;
 
     /**
      * id игры
@@ -28,14 +32,9 @@ public class GameDto {
     /**
      * юзаеры в этой игре
      */
-    private Set<User> userNameList;
+    private List<User> userNameList;
 
     public GameDto() {
     }
 
-    public GameDto(Long id, String gameName, Set<User> userNameList) {
-        this.id = id;
-        this.gameName = gameName;
-        this.userNameList = userNameList;
-    }
 }

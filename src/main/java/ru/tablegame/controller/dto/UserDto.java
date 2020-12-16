@@ -3,8 +3,8 @@ package ru.tablegame.controller.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -14,8 +14,9 @@ import java.util.UUID;
  */
 @Getter
 @Setter
-public class UserDto {
+public class UserDto implements Serializable {
 
+    private static final long serialVersionUID = 8443900228900286833L;
     /**
      * id юзера
      */

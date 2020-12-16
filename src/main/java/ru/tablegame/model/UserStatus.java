@@ -33,6 +33,11 @@ public enum UserStatus {
      * @return
      */
     public static UserStatus getStatusByDesc(@NotNull String desc) {
-        return UserStatus.valueOf(desc);
+        for (UserStatus userStatus : UserStatus.values()) {
+            if (userStatus.description.equals(desc)) {
+                return userStatus;
+            }
+        }
+        return null;
     }
 }
