@@ -16,6 +16,12 @@ public class Character implements Identified<Long> {
      */
     private Long id;
 
+
+    /**
+     * игра в рамках которой существует данный песонаж
+     */
+    private Game game;
+
     /**
      * имя персонажа
      */
@@ -50,6 +56,11 @@ public class Character implements Identified<Long> {
 
     public Character() {
         this.characterStatus = CharacterStatus.CREATE;
+    }
+
+    public Character(Game game) {
+        this();
+        this.game = game;
     }
 
     public Character(Long id, String characterName, int level, CharacteristicsBase characteristicsBase) {
@@ -87,5 +98,9 @@ public class Character implements Identified<Long> {
 
     public Inventory getInventory() {
         return inventory;
+    }
+
+    public Game getGame() {
+        return game;
     }
 }

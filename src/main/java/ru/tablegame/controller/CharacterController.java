@@ -14,11 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 import ru.tablegame.controller.dto.CharacterDto;
 import ru.tablegame.service.CharacterService;
-
-import java.util.Objects;
 import ru.tablegame.validator.CharacterDtoValidator;
 
-import java.util.List;
+import java.util.Objects;
 
 /**
  * @author nemykin 08.12.2020

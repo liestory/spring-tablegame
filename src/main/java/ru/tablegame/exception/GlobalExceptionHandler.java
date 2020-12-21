@@ -1,5 +1,7 @@
 package ru.tablegame.exception;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,14 +19,18 @@ import java.util.UUID;
  * @author nemykin 29.10.2020
  */
 @RestControllerAdvice(basePackages = "ru.tablegame.controller")
+@PropertySource(value = {"classpath:application.properties"})
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
+
+    @Value("${system.name}")
+    private String systemName;
 
     @ExceptionHandler(NullPointerException.class)
     public ResponseEntity<ResponseError> illegalArgumentException(NullPointerException e) {
         ResponseError responseError = new ResponseError(UUID.randomUUID(),
                 e.getMessage(),
                 "Отсутсвует значение. исправте и попройте запрос заново",
-                "");
+                systemName);
         return new ResponseEntity<>(responseError, new HttpHeaders(), HttpStatus.NO_CONTENT);
     }
 
@@ -33,7 +39,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         ResponseError responseError = new ResponseError(UUID.randomUUID(),
                 e.getMessage(),
                 "Отсутсвует значение. исправте и попройте запрос заново",
-                "");
+                systemName);
         return new ResponseEntity<>(responseError, new HttpHeaders(), HttpStatus.NO_CONTENT);
     }
 
@@ -42,7 +48,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         ResponseError responseError = new ResponseError(UUID.randomUUID(),
                 e.getMessage(),
                 "Некорректное значение. исправте и попройте запрос заново",
-                "");
+                systemName);
         return new ResponseEntity<>(responseError, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
 
@@ -51,7 +57,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         ResponseError responseError = new ResponseError(UUID.randomUUID(),
                 e.getMessage(),
                 "Неизвестная ошибка. Попробуйте позже",
-                "");
+                systemName);
         return new ResponseEntity<>(responseError, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
