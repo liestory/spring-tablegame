@@ -3,9 +3,9 @@ package ru.tablegame.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import ru.tablegame.controller.dto.UserDto;
 import ru.tablegame.service.UserService;
@@ -28,7 +28,7 @@ public class AdminPanelController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/change_status", method = RequestMethod.POST)
+    @PostMapping(value = "/change_status")
     public UserDto userRegistration(@Validated @RequestBody UserDto userDto, BindingResult result) {
 //        if (result.hasErrors()) {
 //            userDto.setErrors(result.getAllErrors());

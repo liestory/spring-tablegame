@@ -1,6 +1,6 @@
 package ru.tablegame.model;
 
-import java.util.Map;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -27,28 +27,23 @@ public class User implements Identified<UUID> {
 
     /**
      * статус игрока
-     * TODO: возможно тоже должен быть привязан к игре
      */
     private UserStatus userStatus;
-
     /**
-     * роль игрока
-     * ВАЖНО! роль у пользователя существует только в рамках игры.
+     * списки ролей и статусов у пользователя
      */
-    private Map<Game, Role> role;
+    private List<UserRoleAndStatus> userRoleAndStatusList;
 
     /**
      * привязка персонажа к игре
-     * ВАЖНО! персонажа у пользователя существует только в рамках игры.
      */
-    private Map<Game, Character> characterGameMap;
+    private List<Character> characterList;
 
     public User() {
         this.userStatus = UserStatus.STATUS_LOCKED;
     }
 
     public User(UUID id, String username, String password) {
-        this();
         this.id = id;
         this.username = username;
         this.password = password;
@@ -71,14 +66,6 @@ public class User implements Identified<UUID> {
         this.username = username;
     }
 
-    public UserStatus getUserStatus() {
-        return userStatus;
-    }
-
-    public void setUserStatus(UserStatus userStatus) {
-        this.userStatus = userStatus;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -87,19 +74,27 @@ public class User implements Identified<UUID> {
         this.password = password;
     }
 
-    public Map<Game, Role> getRole() {
-        return role;
+    public List<Character> getCharacterList() {
+        return characterList;
     }
 
-    public void setRole(Map<Game, Role> role) {
-        this.role = role;
+    public List<UserRoleAndStatus> getUserRoleAndStatusList() {
+        return userRoleAndStatusList;
     }
 
-    public Map<Game, Character> getCharacterGameMap() {
-        return characterGameMap;
+    public void setUserRoleAndStatusList(List<UserRoleAndStatus> userRoleAndStatusList) {
+        this.userRoleAndStatusList = userRoleAndStatusList;
     }
 
-    public void setCharacterGameMap(Map<Game, Character> characterGameMap) {
-        this.characterGameMap = characterGameMap;
+    public void setCharacterList(List<Character> characterList) {
+        this.characterList = characterList;
+    }
+
+    public UserStatus getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(UserStatus userStatus) {
+        this.userStatus = userStatus;
     }
 }
