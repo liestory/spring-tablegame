@@ -11,6 +11,7 @@
     <include file="characteristicBase.xml" relativeToChangelogFile="true"/>
     <include file="item.xml" relativeToChangelogFile="true"/>
     <include file="inventory.xml" relativeToChangelogFile="true"/>
+    <include file="itemInInventory.xml" relativeToChangelogFile="true"/>
     <include file="character.xml" relativeToChangelogFile="true"/>
 
 

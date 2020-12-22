@@ -11,7 +11,8 @@
             </not>
         </preConditions>
 
-        <createTable tableName="user"
+
+        <createTable tableName="user_role_and_status"
                      remarks="Таблица зарегистрированных пользователей">
             <column name="id" type="uuid"
                     remarks="Идентификатор записи">
@@ -19,32 +20,24 @@
                              primaryKeyName="user_pk"
                              nullable="false"/>
             </column>
-            <column name="username" type="varchar(255)" remarks="Наименование краткое">
-                <constraints nullable="false"/>
-            </column>
-            <column name="password" type="varchar(255)" remarks="Пароль пользователя"/>
+            <column name="user_status" type="varchar(255)" remarks="Статус пользователя в системе"/>
 
+            <column name="role" type="varchar(255)" remarks="Роль пользователя в системе"/>
             <column name="game_id" type="uuid" remarks="Игра">
-                <constraints foreignKeyName="game_fk"
+                <constraints foreignKeyName="user_fk"
                              referencedTableName="game"
                              referencedColumnNames="id"
                              nullable="false"/>
             </column>
 
-        </createTable>
-        <comment>Создание таблицы пользователя</comment>
-    </changeSet>
+            <column name="user_id" type="uuid" remarks="Юзер">
+                <constraints foreignKeyName="user_fk"
+                             referencedTableName="user"
+                             referencedColumnNames="id"
+                             nullable="false"/>
+            </column>
 
-    <changeSet id="2" author="Igor Nemykin">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <indexExists tableName="user" indexName="user_username_idx"/>
-            </not>
-        </preConditions>
-        <createIndex tableName="user" indexName="user_username_idx">
-            <column name="username"/>
-        </createIndex>
-        <comment>Индекс для поиска по имени пользователя</comment>
+        </createTable>
     </changeSet>
 
 </databaseChangeLog>

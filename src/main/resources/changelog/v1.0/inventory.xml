@@ -27,12 +27,6 @@
                 <constraints nullable="false"/>
             </column>
 
-            <!--            TODO:Здесь пока проблема, уточняю как верно сделать. требует всегда foreignKeyName, но тогда не наполнится массив-->
-            <!--            <column name="items_id" type="varchar()[]" remarks="список id предметов в инвентаре">-->
-            <!--                <constraints referencedTableName="item"-->
-            <!--                             referencedColumnNames="id"-->
-            <!--                             nullable="true"/>-->
-            <!--            </column>-->
 
         </createTable>
     </changeSet>
