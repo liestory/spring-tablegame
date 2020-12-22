@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 import ru.tablegame.controller.dto.CharacterDto;
 import ru.tablegame.service.CharacterService;
+import ru.tablegame.validator.CharacterDtoValidator;
 
 import java.util.Objects;
 
@@ -25,9 +26,12 @@ import java.util.Objects;
 @Slf4j
 public class CharacterController {
     private CharacterService characterService;
+    private CharacterDtoValidator characterDtoValidator;
 
-    public CharacterController(CharacterService characterService) {
+    public CharacterController(CharacterService characterService,
+                               CharacterDtoValidator characterDtoValidator) {
         this.characterService = characterService;
+        this.characterDtoValidator = characterDtoValidator;
     }
 
     /**
@@ -37,6 +41,7 @@ public class CharacterController {
     @PostMapping
     public ResponseEntity<CharacterDto> createCharacter(@RequestBody CharacterDto characterDto, UriComponentsBuilder componentsBuilder) {
         log.info("create with {} - start ", characterDto);
+        characterDtoValidator.validate(characterDto);
         var result = characterService.createCharacter(characterDto);
         var uri = componentsBuilder.path("/api/v1/character/" + result.getId()).buildAndExpand(result).toUri();
         log.info("create with {} - end", result);
@@ -59,6 +64,7 @@ public class CharacterController {
         if (!Objects.equals(id, characterDto.getId())) {
             throw new IllegalArgumentException("id= " + characterDto.getId() + ": expected same as " + id);
         }
+        characterDtoValidator.validate(characterDto);
         var result = characterService.updateCharacter(characterDto);
         log.info("update with {} - end", result);
         return ResponseEntity.ok().body(result);
@@ -80,6 +86,7 @@ public class CharacterController {
         if (!Objects.equals(id, characterDto.getId())) {
             throw new IllegalArgumentException("id= " + characterDto.getId() + ": expected same as " + id);
         }
+        characterDtoValidator.validate(characterDto);
         characterService.changeStatusCharacter(id, characterDto);
         log.info("change status with {} - end", id);
         return new ResponseEntity(HttpStatus.OK);

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 import ru.tablegame.controller.dto.GameDto;
 import ru.tablegame.service.GameService;
+import ru.tablegame.validator.GameDtoValidator;
 
 import java.util.Objects;
 
@@ -26,9 +27,12 @@ import java.util.Objects;
 public class GameController {
 
     private GameService gameService;
+    private GameDtoValidator gameDtoValidator;
 
-    public GameController(GameService gameService) {
+    public GameController(GameService gameService,
+                          GameDtoValidator gameDtoValidator) {
         this.gameService = gameService;
+        this.gameDtoValidator = gameDtoValidator;
     }
     //GET, PUT, POST, DELETE
 
@@ -38,6 +42,7 @@ public class GameController {
     @PostMapping()
     public ResponseEntity<GameDto> gameRegistration(@RequestBody GameDto gameDto, UriComponentsBuilder componentsBuilder) {
         log.info("create with {} - start ", gameDto);
+        gameDtoValidator.validate(gameDto);
         var result = gameService.regGame(gameDto);
         var uri = componentsBuilder.path("/api/v1/game/" + result.getId()).buildAndExpand(result).toUri();
         log.info("create with {} - end", result);
@@ -60,6 +65,7 @@ public class GameController {
         if (!Objects.equals(id, gameDto.getId())) {
             throw new IllegalArgumentException("id=" + gameDto.getId() + ": expected same as " + id);
         }
+        gameDtoValidator.validate(gameDto);
         var result = gameService.updateGame(gameDto);
         log.info("update with {} - end", result);
         return ResponseEntity.ok().body(result);

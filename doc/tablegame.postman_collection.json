@@ -1,0 +1,422 @@
+{
+	"info": {
+		"_postman_id": "fc6275b7-66a1-4454-a213-8f155be4def4",
+		"name": "tablegame",
+		"description": "table game for spring study",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "static/ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/static/ping",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"static",
+						"ping"
+					]
+				},
+				"description": "http://localhost:8080/api/static/ping"
+			},
+			"response": []
+		},
+		{
+			"name": "req user success",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "00c46c73-a435-40ca-b03f-eba1013400ad",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"MrTest\",\r\n    \"password\": \"password\",\r\n    \"repeatPassword\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"user"
+					]
+				},
+				"description": "{\r\n    \"id\": 1,\r\n    \"username\": \"Mr. Test\",\r\n    \"password\": \"password\",\r\n    \"repeatPassword\": \"password\"\r\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "req game success",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "00c46c73-a435-40ca-b03f-eba1013400ad",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"gameName\": \"test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/game/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"game",
+						"create"
+					]
+				},
+				"description": "{\r\n    \"gameName\": \"test game\"\r\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "get user",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "00c46c73-a435-40ca-b03f-eba1013400ad",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/user/8e69d1fd-9ed4-4ffb-affc-ddb08dc884df",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"8e69d1fd-9ed4-4ffb-affc-ddb08dc884df"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update user",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "00c46c73-a435-40ca-b03f-eba1013400ad",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"127f2521-7b5c-4620-812d-826ade6704b5\",\r\n    \"username\": \"MrTest\",\r\n    \"password\": \"password\",\r\n    \"repeatPassword\": \"password\",\r\n    \"status\":\"Наблюдатель\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/user/127f2521-7b5c-4620-812d-826ade6704b5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"127f2521-7b5c-4620-812d-826ade6704b5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete user",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "00c46c73-a435-40ca-b03f-eba1013400ad",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/user/127f2521-7b5c-4620-812d-826ade6704b5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"127f2521-7b5c-4620-812d-826ade6704b5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "character create ",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\": \"MrTest\",\r\n    \"gameName\": \"test\",\r\n    \"characterName\": \"meow\",\r\n    \"level\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/character",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"character"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get character ",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/character/3257358789745781577",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"character",
+						"3257358789745781577"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update character ",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 3257358789745781577,\r\n    \"userName\": \"MrTest\",\r\n    \"gameName\": \"test\",\r\n    \"characterName\": \"meow\",\r\n    \"level\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/character/3257358789745781577",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"character",
+						"3257358789745781577"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete character ",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/character/3257358789745781577",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"character",
+						"3257358789745781577"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update character  status",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": -5026745601794718198,\r\n    \"userName\": \"MrTest\",\r\n    \"gameName\": \"test\",\r\n    \"characterName\": \"meow\",\r\n    \"level\": 1,\r\n    \"statusDesc\": \"Активен\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/character/-5026745601794718198/status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"character",
+						"-5026745601794718198",
+						"status"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

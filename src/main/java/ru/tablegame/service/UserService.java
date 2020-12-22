@@ -60,18 +60,20 @@ public interface UserService {
      *
      * @param user - карточка юзера
      * @param role - статус юзера который для изменения
+     * @param status - статус юзера который для изменения
      * @param game - карточка игры
      */
-    void addRole(User user, Role role, Game game);
+    void addRole(User user, Role role, UserStatus status, Game game);
 
     /**
      * изменить роль пользователю роль
      *
      * @param user - карточка юзера
      * @param role - статус юзера который для изменения
+     * @param status - статус юзера который для изменения
      * @param game - карточка игры
      */
-    void changeRole(User user, Role role, Game game);
+    void changeRole(User user, Role role, UserStatus status, Game game);
 
     /**
      * изменить статус пользователя пользователю роль
@@ -90,12 +92,4 @@ public interface UserService {
      */
     void createCharacterByUser(User user, Game game);
 
-    /**
-     * получения карточки персонажа по id юзеру и названию игры
-     *
-     * @param userName - логин юзера
-     * @param gameName - название игры
-     * @return -  список карточек персонажа
-     */
-    List<CharacterDto> getCharacterByUserNameAndGameName(String userName, String gameName);
 }

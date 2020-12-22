@@ -14,8 +14,8 @@ import java.util.Random;
 /**
  * @author Asus 14.10.2020
  */
-@Service
 @Slf4j
+@Service
 public class GameServiceImpl implements GameService {
 
     private GameDAO gameDAO;

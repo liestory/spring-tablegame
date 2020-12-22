@@ -2,20 +2,18 @@ package ru.tablegame.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ru.tablegame.controller.dto.CharacterDto;
 import ru.tablegame.controller.dto.UserDto;
 import ru.tablegame.dao.UserDAO;
 import ru.tablegame.model.Character;
 import ru.tablegame.model.Game;
 import ru.tablegame.model.Role;
 import ru.tablegame.model.User;
+import ru.tablegame.model.UserRoleAndStatus;
 import ru.tablegame.model.UserStatus;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -77,15 +75,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addRole(User user, Role role, Game game) {
-        user.getRole().put(game, role);
+    public void addRole(User user, Role role, UserStatus status, Game game) {
+        user.getUserRoleAndStatusList().add(new UserRoleAndStatus(new Random().nextLong(), status, role, game));
     }
 
     @Override
-    public void changeRole(User user, Role role, Game game) {
-        for (Map.Entry<Game, Role> gameRoleEntry : user.getRole().entrySet()) {
-            if (gameRoleEntry.getKey().equals(game.getGameName())) {
-                gameRoleEntry.setValue(role);
+    public void changeRole(User user, Role role, UserStatus status, Game game) {
+        for (UserRoleAndStatus userRoleAndStatus : user.getUserRoleAndStatusList()) {
+            if (userRoleAndStatus.getGame().equals(game)) {
+                userRoleAndStatus.setRole(role);
+                userRoleAndStatus.setUserStatus(status);
             }
         }
 
@@ -98,24 +97,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void createCharacterByUser(User user, Game game) {
-        Character character = new Character();
-        user.getCharacterGameMap().put(game, character);
+        Character character = new Character(game);
+        user.getCharacterList().add(character);
     }
-
-    @Override
-    public List<CharacterDto> getCharacterByUserNameAndGameName(String userName, String gameName) {
-        Map<Game, Character> gameCharacterMap = userDAO.getCharacterByUserNameAndGameName(userName, gameName);
-        List<CharacterDto> characterDtos = new ArrayList<>();
-        for (Character character : gameCharacterMap.values()) {
-            CharacterDto characterDto = new CharacterDto();
-            characterDto.setId(character.getId());
-            characterDto.setCharacterName(character.getCharacterName());
-            characterDto.setGameName(gameName);
-            characterDto.setLevel(character.getLevel());
-            characterDto.setCharacteristics(character.getCharacteristics());
-            characterDtos.add(characterDto);
-        }
-        return characterDtos;
-    }
-
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 import ru.tablegame.controller.dto.UserDto;
 import ru.tablegame.service.UserService;
+import ru.tablegame.validator.UserDtoValidator;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -27,9 +28,11 @@ import java.util.UUID;
 public class UserController {
 
     private UserService userService;
+    private UserDtoValidator userDtoValidator;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserDtoValidator userDtoValidator) {
         this.userService = userService;
+        this.userDtoValidator = userDtoValidator;
     }
 
     /**
@@ -39,6 +42,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity<UserDto> createCharacter(@RequestBody UserDto userDto, UriComponentsBuilder componentsBuilder) {
         log.info("create with {} - start ", userDto);
+        userDtoValidator.validate(userDto);
         var result = userService.regUser(userDto);
         var uri = componentsBuilder.path("/api/v1/user/" + result.getId()).buildAndExpand(result).toUri();
         log.info("create with {} - end", result);
@@ -61,6 +65,7 @@ public class UserController {
         if (!Objects.equals(id, userDto.getId())) {
             throw new IllegalArgumentException("id=" + userDto.getId() + ": expected same as " + id);
         }
+        userDtoValidator.validate(userDto);
         var result = userService.updateUser(userDto);
         log.info("update with {} - end", result);
         return ResponseEntity.ok().body(result);

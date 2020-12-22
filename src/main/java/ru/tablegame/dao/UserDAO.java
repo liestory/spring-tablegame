@@ -4,7 +4,10 @@ import ru.tablegame.model.Character;
 import ru.tablegame.model.Game;
 import ru.tablegame.model.Role;
 import ru.tablegame.model.User;
+import ru.tablegame.model.UserRoleAndStatus;
 
+import javax.swing.*;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -24,37 +27,28 @@ public interface UserDAO extends GenericDAO<User, UUID> {
     User findPlayerByLogin(String name);
 
     /**
-     * Получить роль у данного юзера по логину.
+     * Получить роли и статус у данного юзера по логину.
      *
      * @param name     - логин пользователя
-     * @param gameName - название игры
-     * @return - роль юзера в текущей игре
+     * @return - карточки состояния юзера
      */
-    Role getRoleByLogin(String name, String gameName);
+    List<UserRoleAndStatus> getRoleByLogin(String name);
 
     /**
      * получить всех персонажа по его логину
      *
      * @param name -  логин пользователя
-     * @return -  список карточек персонажа c привязкой к играм
+     * @return -  список карточек персонажа
      */
-    Map<Game, Character> getCharacterByLogin(String name);
+    List<Character> getCharacterByLogin(String name);
 
     /**
      * получить список персонажей по его
      *
      * @param userId   - id юзера в системе
-     * @param gameName - название игры
-     * @return - список карточек персонажа c привязкой к играм
+     * @return - список карточек персонажа
      */
-    Map<Game, Character> getCharacterByUserIdAndGameName(UUID userId, String gameName);
+    List<Character> getCharacterByUserIdAndGameName(UUID userId);
 
-    /**
-     * получить список персонажей по его
-     *
-     * @param userName - логин пользователя
-     * @param gameName - название игры
-     * @return - список карточек персонажа c привязкой к играм
-     */
-    Map<Game, Character> getCharacterByUserNameAndGameName(String userName, String gameName);
+
 }
