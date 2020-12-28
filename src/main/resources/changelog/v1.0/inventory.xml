@@ -19,11 +19,11 @@
                              nullable="false"/>
             </column>
 
-            <column name="countSlots" type="smallint" remarks="колличество слотов в инвенторе">
+            <column name="countSlots" type="integer" remarks="колличество слотов в инвенторе">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="weightMax" type="smallint" remarks="Максимально вместимый вес в инвентарь">
+            <column name="weightMax" type="integer" remarks="Максимально вместимый вес в инвентарь">
                 <constraints nullable="false"/>
             </column>
 

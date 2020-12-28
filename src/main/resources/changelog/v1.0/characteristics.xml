@@ -19,27 +19,27 @@
                              nullable="false"/>
             </column>
 
-            <column name="strength" type="smallint" remarks="Наименование краткое">
+            <column name="strength" type="integer" remarks="Наименование краткое">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="dexterity" type="smallint" remarks="Статус персонажа в системе">
+            <column name="dexterity" type="integer" remarks="Статус персонажа в системе">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="constitution" type="smallint" remarks="Уровень персонажа">
+            <column name="constitution" type="integer" remarks="Уровень персонажа">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="intelligent" type="smallint" remarks="Наименование краткое">
+            <column name="intelligent" type="integer" remarks="Наименование краткое">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="wisdom" type="smallint" remarks="Статус персонажа в системе">
+            <column name="wisdom" type="integer" remarks="Статус персонажа в системе">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="charisma" type="smallint" remarks="Уровень персонажа">
+            <column name="charisma" type="integer" remarks="Уровень персонажа">
                 <constraints nullable="false"/>
             </column>
 

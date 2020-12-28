@@ -23,15 +23,15 @@
                 <constraints nullable="false"/>
             </column>
 
-            <column name="weight" type="smallint" remarks="Вес предмета">
+            <column name="weight" type="integer" remarks="Вес предмета">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="durability" type="smallint" remarks="Заряд прочности предмета текущий">
+            <column name="durability" type="integer" remarks="Заряд прочности предмета текущий">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="durabilityMax" type="smallint" remarks="Максимальный заряд прочности предмета">
+            <column name="durabilityMax" type="integer" remarks="Максимальный заряд прочности предмета">
                 <constraints nullable="false"/>
             </column>
 

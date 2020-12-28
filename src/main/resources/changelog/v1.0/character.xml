@@ -22,7 +22,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="character_status" type="varchar(255)" remarks="Статус персонажа в системе"/>
-            <column name="level" type="smallint" remarks="Уровень персонажа"/>
+            <column name="level" type="integer" remarks="Уровень персонажа"/>
 
             <column name="role" type="varchar(255)" remarks="Роль пользователя в системе"/>
 
