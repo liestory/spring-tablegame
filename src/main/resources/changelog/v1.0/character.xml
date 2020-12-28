@@ -1,0 +1,80 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet id="1" author="Igor Nemykin">
+        <preConditions>
+            <not>
+                <tableExists tableName="character"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="character"
+                     remarks="Таблица зарегистрированных персонаженй">
+            <column name="id" type="uuid"
+                    remarks="Идентификатор записи">
+                <constraints primaryKey="true"
+                             primaryKeyName="character_pk"
+                             nullable="false"/>
+            </column>
+            <column name="charactername" type="varchar(255)" remarks="Наименование краткое">
+                <constraints nullable="false"/>
+            </column>
+            <column name="character_status" type="varchar(255)" remarks="Статус персонажа в системе"/>
+            <column name="level" type="integer" remarks="Уровень персонажа"/>
+
+            <column name="role" type="varchar(255)" remarks="Роль пользователя в системе"/>
+
+
+            <column name="user_id" type="uuid" remarks="Юзер">
+                <constraints foreignKeyName="user_fk"
+                             referencedTableName="user"
+                             referencedColumnNames="id"
+                             nullable="false"/>
+            </column>
+
+            <column name="game_id" type="uuid" remarks="Игра">
+                <constraints foreignKeyName="game_fk"
+                             referencedTableName="game"
+                             referencedColumnNames="id"
+                             nullable="false"/>
+            </column>
+
+            <column name="characteristic_id" type="uuid" remarks="Характеристики текущие">
+                <constraints foreignKeyName="characteristic_fk"
+                             referencedTableName="characteristic"
+                             referencedColumnNames="id"
+                             nullable="false"/>
+            </column>
+
+            <column name="characteristicbase_id" type="uuid" remarks="Характеристики базовые">
+                <constraints foreignKeyName="characteristicbase_fk"
+                             referencedTableName="characteristicbase"
+                             referencedColumnNames="id"
+                             nullable="false"/>
+            </column>
+
+            <column name="inventory_id" type="uuid" remarks="инвентарь персонажа">
+                <constraints foreignKeyName="inventory_fk"
+                             referencedTableName="inventory"
+                             referencedColumnNames="id"
+                             nullable="true"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="Igor Nemykin">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="character" indexName="character_charactername_idx"/>
+            </not>
+        </preConditions>
+        <createIndex tableName="character" indexName="character_charactername_idx">
+            <column name="charactername"/>
+        </createIndex>
+        <comment>Индекс для поиска по имени персонажа</comment>
+    </changeSet>
+</databaseChangeLog>
+                   

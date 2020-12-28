@@ -1,0 +1,39 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="1" author="Igor Nemykin">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="organization"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="game"
+                     remarks="Таблица зарегистрированных игр">
+            <column name="id" type="uuid"
+                    remarks="Идентификатор записи">
+                <constraints primaryKey="true"
+                             primaryKeyName="game_pk"
+                             nullable="false"/>
+            </column>
+
+            <column name="game_name" type="varchar(255)" remarks="Наименование организации">
+                <constraints nullable="false"/>
+            </column>
+            <column name="game_status" type="varchar(255)" remarks="Статутс пользователя в системе">
+                <constraints nullable="false"/>
+            </column>
+            <column name="game_at" type="timestamp with time zone" remarks="Дата создания">
+                <constraints nullable="false"/>
+            </column>
+            <column name="game_update" type="timestamp with time zone" remarks="Дата обновления">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <comment>Создание таблицы игр</comment>
+    </changeSet>
+
+</databaseChangeLog>
