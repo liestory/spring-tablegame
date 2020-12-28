@@ -26,12 +26,12 @@ public interface GenericDAO<T extends Identified<PK>, PK extends Serializable> {
     /**
      * Удаляет запись об объекте по первоичном ключу
      */
-    T deleteByPK(PK key);
+    int deleteByPK(PK key);
 
     /**
      * Сохраняет состояние объекта
      */
-    T update(T ob);
+    int update(T ob);
 
     /**
      * Удаляет запись об объекте
