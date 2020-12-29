@@ -35,6 +35,7 @@ public class CharacterDAOImpl implements CharacterDAO {
     public CharacterDAOImpl(JdbcTemplate jdbcTemplate, SimpleJdbcInsert simpleJdbcInsert) {
         this.jdbcTemplate = jdbcTemplate;
         this.simpleJdbcInsert = simpleJdbcInsert;
+        simpleJdbcInsert.withTableName("character");
     }
 
     @Override

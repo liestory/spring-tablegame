@@ -34,6 +34,7 @@ public class GameDAOImpl implements GameDAO {
     public GameDAOImpl(JdbcTemplate jdbcTemplate, SimpleJdbcInsert simpleJdbcInsert) {
         this.jdbcTemplate = jdbcTemplate;
         this.simpleJdbcInsert = simpleJdbcInsert;
+        simpleJdbcInsert.withTableName("game");
     }
 
     @Override
