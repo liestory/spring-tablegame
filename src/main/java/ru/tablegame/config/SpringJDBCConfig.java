@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import javax.sql.DataSource;
@@ -33,17 +32,46 @@ public class SpringJDBCConfig {
         return namedParameterJdbcTemplate;
     }
 
+    /**
+     * SimpleJdbcInsert для таблицы user
+     *
+     * @param dataSource
+     * @return - экземпляр для SimpleJdbcInsert со связкой с таблицей user
+     */
     @Bean
     @DependsOn("dataSource")
-    public SimpleJdbcInsert simpleJdbcInsert(DataSource dataSource) {
-        var simpleJdbcInsert = new SimpleJdbcInsert(dataSource);
+    public SimpleJdbcInsert userSimpleJdbcInsert(DataSource dataSource) {
+        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(dataSource);
+        simpleJdbcInsert.withTableName("user");
         return simpleJdbcInsert;
     }
 
+    /**
+     * SimpleJdbcInsert для таблицы game
+     *
+     * @param dataSource
+     * @return - экземпляр для SimpleJdbcInsert со связкой с таблицей game
+     */
     @Bean
     @DependsOn("dataSource")
-    public SimpleJdbcCall simpleJdbcCall(DataSource dataSource) {
-        var simpleJdbcCall = new SimpleJdbcCall(dataSource);
-        return simpleJdbcCall;
+    public SimpleJdbcInsert gameSimpleJdbcInsert(DataSource dataSource) {
+        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(dataSource);
+        simpleJdbcInsert.withTableName("game");
+        return simpleJdbcInsert;
     }
+
+    /**
+     * SimpleJdbcInsert для таблицы character
+     *
+     * @param dataSource
+     * @return - экземпляр для SimpleJdbcInsert со связкой с таблицей character
+     */
+    @Bean
+    @DependsOn("dataSource")
+    public SimpleJdbcInsert characterSimpleJdbcInsert(DataSource dataSource) {
+        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(dataSource);
+        simpleJdbcInsert.withTableName("character");
+        return simpleJdbcInsert;
+    }
+
 }
