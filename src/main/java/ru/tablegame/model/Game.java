@@ -34,6 +34,11 @@ public class Game implements Identified<Long> {
         this.gameStatus = GameStatus.CREATED;
     }
 
+    public Game(Long id) {
+        this();
+        this.id = id;
+    }
+
     public Game(Long id, String gameName) {
         this();
         this.id = id;
