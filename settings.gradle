@@ -1,2 +1,10 @@
 rootProject.name = 'spring-tablegame'
+include 'table-game-api'
+include 'table-game-impl'
+include 'table-game-model'
+include 'table-game-audit'
+include 'table-game-auth-api'
+include 'table-game-auth-impl'
+include 'table-game-auth-validate'
+include 'table-game-auth-model'
 

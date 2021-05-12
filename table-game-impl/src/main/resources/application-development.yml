@@ -1,0 +1,28 @@
+server:
+  port: ${APP_PORT:8080}
+  servlet:
+    application-display-name: table-game
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tablegame
+    username: postgres
+    password: padla123
+    driverClassName: org.postgresql.Driver
+
+logging:
+  level:
+    ROOT: info
+    ru.tablegame: DEBUG
+    org.springframework: info
+  appenders:
+    console:
+      enabled: true
+
+
+registration:
+  enabled: false
+
+
+audit:
+  service: db

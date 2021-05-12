@@ -1,0 +1,101 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="1" author="Igor Nemykin">
+        <modifyDataType schemaName="tablegame"
+                        tableName="game"
+                        columnName="id" newDataType="bigint"/>
+        <comment>изменения типа колонки id в game</comment>
+    </changeSet>
+
+    <changeSet id="2" author="Igor Nemykin">
+        <modifyDataType schemaName="tablegame"
+                        tableName="character"
+                        columnName="id" newDataType="bigint"/>
+        <comment>изменения типа колонки id в character</comment>
+        <modifyDataType schemaName="tablegame"
+                        tableName="character"
+                        columnName="user_id" newDataType="bigint"/>
+        <comment>изменения типа колонки user_id в character</comment>
+
+        <modifyDataType schemaName="tablegame"
+                        tableName="character"
+                        columnName="game_id" newDataType="bigint"/>
+        <comment>изменения типа колонки game_id в character</comment>
+
+        <modifyDataType schemaName="tablegame"
+                        tableName="character"
+                        columnName="characteristic_id" newDataType="bigint"/>
+        <comment>изменения типа колонки characteristic_id в character</comment>
+
+        <modifyDataType schemaName="tablegame"
+                        tableName="character"
+                        columnName="characteristicbase_id" newDataType="bigint"/>
+        <comment>изменения типа колонки characteristicbase_id в character</comment>
+
+        <modifyDataType schemaName="tablegame"
+                        tableName="character"
+                        columnName="inventory_id" newDataType="bigint"/>
+        <comment>изменения типа колонки inventory_id в character</comment>
+    </changeSet>
+
+    <changeSet id="3" author="Igor Nemykin">
+        <modifyDataType schemaName="tablegame"
+                        tableName="characteristic"
+                        columnName="id" newDataType="bigint"/>
+        <comment>изменения типа колонки id в characteristic</comment>
+    </changeSet>
+
+    <changeSet id="4" author="Igor Nemykin">
+        <modifyDataType schemaName="tablegame"
+                        tableName="characteristicbase"
+                        columnName="id" newDataType="bigint"/>
+        <comment>изменения типа колонки id в characteristicbase</comment>
+    </changeSet>
+
+    <changeSet id="5" author="Igor Nemykin">
+        <modifyDataType schemaName="tablegame"
+                        tableName="inventory"
+                        columnName="id" newDataType="bigint"/>
+        <comment>изменения типа колонки id в inventory</comment>
+    </changeSet>
+
+    <changeSet id="6" author="Igor Nemykin">
+        <modifyDataType schemaName="tablegame"
+                        tableName="item"
+                        columnName="id" newDataType="bigint"/>
+        <comment>изменения типа колонки id в item</comment>
+    </changeSet>
+
+    <changeSet id="7" author="Igor Nemykin">
+        <modifyDataType schemaName="tablegame"
+                        tableName="item_and_inventory"
+                        columnName="id" newDataType="bigint"/>
+        <comment>изменения типа колонки id в item_and_inventory</comment>
+
+        <modifyDataType schemaName="tablegame"
+                        tableName="item_and_inventory"
+                        columnName="item_id" newDataType="bigint"/>
+        <comment>изменения типа колонки item_id в item_and_inventory</comment>
+
+        <modifyDataType schemaName="tablegame"
+                        tableName="item_and_inventory"
+                        columnName="inventory_id" newDataType="bigint"/>
+        <comment>изменения типа колонки inventory_id в item_and_inventory</comment>
+    </changeSet>
+
+    <changeSet id="8" author="Igor Nemykin">
+        <modifyDataType schemaName="tablegame"
+                        tableName="user_role_and_status"
+                        columnName="id" newDataType="bigint"/>
+        <comment>изменения типа колонки id в user_role_and_status</comment>
+
+        <modifyDataType schemaName="tablegame"
+                        tableName="user_role_and_status"
+                        columnName="game_id" newDataType="bigint"/>
+        <comment>изменения типа колонки game_id в user_role_and_status</comment>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,22 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="1" author="Igor Nemykin">
+        <renameColumn newColumnName="role_global"
+                      oldColumnName="roleGlobal"
+                      schemaName="auth"
+                      tableName="user"/>
+        <comment>изменения названия колонки глобальная роль</comment>
+    </changeSet>
+
+    <changeSet id="2" author="Igor Nemykin">
+        <renameColumn newColumnName="character_name"
+                      oldColumnName="charactername"
+                      schemaName="tablegame"
+                      tableName="character"/>
+        <comment>изменения названия колонки имя персонажа</comment>
+    </changeSet>
+</databaseChangeLog>

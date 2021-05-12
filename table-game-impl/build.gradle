@@ -1,0 +1,40 @@
+springBoot {
+    buildInfo()
+}
+
+bootJar {
+//    enabled = true
+    launchScript()
+}
+
+
+dependencies {
+    implementation project(":table-game-model")
+    implementation project(":table-game-auth-model")
+    implementation project(":table-game-auth-api")
+    implementation project(":table-game-auth-validate")
+    implementation project(":table-game-api")
+    implementation project(":table-game-audit")
+
+    implementation deps."spring-boot-starter-webflux"
+    implementation deps."spring-boot-starter-actuator"
+    implementation deps."spring-boot-starter-data-jpa"
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+
+    implementation deps."spring-boot-starter-test"
+
+    implementation deps."liquibase"
+
+    implementation deps."commons-lang3"
+    implementation deps."validation-api"
+
+    implementation deps."orika-spring-boot-starter"
+
+    implementation deps."spring-security"
+
+    implementation deps."jjwt-api"
+    implementation deps."jjwt-impl"
+    implementation deps."jjwt-orgjson"
+
+    implementation deps."spring-quartz"
+}

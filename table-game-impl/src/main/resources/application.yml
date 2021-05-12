@@ -1,0 +1,92 @@
+server:
+  port: ${APP_PORT:8080}
+  servlet:
+    session:
+      cookie:
+        http-only: true
+    context-path: /table-game
+    application-display-name: table-game
+  tomcat:
+    max-connections: 1000
+    accept-count: 100
+    connection-timeout: 30000
+
+spring:
+  application:
+    name: table-game
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    hikari:
+      connection-timeout: 30000
+      maximum-pool-size: 10
+  liquibase:
+    enabled: true
+    change-log: classpath:/changelog/changelog-master.xml
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    properties:
+      hibernate.temp.use_jdbc_metadata_defaults: false
+    show-sql: false
+    hibernate:
+      hbm2ddl:
+        auto: none
+      default_schema: tablegame
+      use_sql_comments: true
+      format_sql: true
+  jackson:
+    defaultPropertyInclusion: NON_NULL
+  quartz:
+    auto-startup: true
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: always
+    properties:
+      org.quartz.jobStore.class: org.quartz.impl.jdbcjobstore.JobStoreTX
+      org.quartz.jobStore.driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+      org.quartz.jobStore.maxMisfiresToHandleAtATime: 13
+      org.quartz.threadPool.class: org.quartz.simpl.SimpleThreadPool
+      org.quartz.threadPool.threadCount: 2
+      org.quartz.threadPool.threadsInheritContextClassLoaderOfInitializingThread: true
+      org.quartz.scheduler.instanceName: tablegame-quartz
+      org.quartz.scheduler.instanceId: AUTO
+
+
+logging:
+  level:
+    ROOT: INFO
+    ru.tablegame: DEBUG
+    org.springframework: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health, metrics
+  metrics:
+    export:
+      atlas:
+        enabled: true
+
+threadPool:
+  corePoolSize: 4
+  maxPoolSize: 8
+
+swagger:
+  title: тестовый проект
+  description: тестовый проект
+  contract:
+    mail: core4life@gmail.com
+    name: Igor Nemykin
+
+token:
+  key: uEGGTVVtLggFTizCsMtwOJnRhjaQ2BMUQhcYgfPxCC7=
+  time: 360000
+
+audit:
+  service: console
+
+scheduling:
+  surpriseAttackSchedule:
+    enabled: true
+    interval: 3600

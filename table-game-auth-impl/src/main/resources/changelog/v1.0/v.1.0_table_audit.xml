@@ -1,0 +1,54 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="audit_table" author="Igor Nemykin">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists schemaName="auth" tableName="audit"/>
+            </not>
+        </preConditions>
+
+        <createTable schemaName="auth" tableName="audit"
+                     remarks="Таблица аудита">
+            <column name="id" type="uuid"
+                    remarks="Идентификатор записи">
+                <constraints primaryKey="true"
+                             primaryKeyName="audit_pk"
+                             nullable="false"/>
+            </column>
+            <column name="audit_code" type="varchar(255)"
+                    remarks="Код события аудита">
+                <constraints nullable="false"/>
+            </column>
+            <column name="audit_event" type="varchar(255)"
+                    remarks="Статус события аудита">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time_start" type="timestamp with time zone"
+                    remarks="Время начала аудита">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time_end" type="timestamp with time zone"
+                    remarks="Время конца аудита">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="varchar(255)"
+                    remarks="Имя пользователя инициатора события">
+                <constraints nullable="false"/>
+            </column>
+            <column name="params" type="varchar(65535)"
+                    remarks="Параметры запроса">
+                <constraints nullable="false"/>
+            </column>
+            <column name="return_value" type="varchar(65535)"
+                    remarks="Результат выполнения метода">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <comment>Задача по созданию таблицы аудита</comment>
+    </changeSet>
+
+</databaseChangeLog>

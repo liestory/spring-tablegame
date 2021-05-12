@@ -1,0 +1,150 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="1" author="Igor Nemykin">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists schemaName="tablegame" tableName="character" columnName="created_at"/>
+                <columnExists schemaName="tablegame" tableName="character" columnName="updated_at"/>
+            </not>
+        </preConditions>
+        <addColumn schemaName="tablegame" tableName="character">
+            <column name="created_at" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <comment>добавление аудита для табицы character</comment>
+    </changeSet>
+
+    <changeSet id="2" author="Igor Nemykin">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists schemaName="tablegame" tableName="characteristicbase" columnName="created_at"/>
+                <columnExists schemaName="tablegame" tableName="characteristicbase" columnName="updated_at"/>
+            </not>
+        </preConditions>
+        <addColumn schemaName="tablegame" tableName="characteristicbase">
+            <column name="created_at" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <comment>добавление аудита для табицы characteristicbase</comment>
+    </changeSet>
+
+    <changeSet id="3" author="Igor Nemykin">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists schemaName="tablegame" tableName="characteristic" columnName="created_at"/>
+                <columnExists schemaName="tablegame" tableName="characteristic" columnName="updated_at"/>
+            </not>
+        </preConditions>
+        <addColumn schemaName="tablegame" tableName="characteristic">
+            <column name="created_at" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <comment>>добавление аудита для табицы characteristic</comment>
+    </changeSet>
+
+    <changeSet id="4" author="Igor Nemykin">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists schemaName="tablegame" tableName="game" columnName="created_at"/>
+                <columnExists schemaName="tablegame" tableName="game" columnName="updated_at"/>
+            </not>
+        </preConditions>
+        <addColumn schemaName="tablegame" tableName="game">
+            <column name="created_at" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <comment>>добавление аудита для табицы game</comment>
+    </changeSet>
+
+    <changeSet id="5" author="Igor Nemykin">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists schemaName="tablegame" tableName="inventory" columnName="created_at"/>
+                <columnExists schemaName="tablegame" tableName="inventory" columnName="updated_at"/>
+            </not>
+        </preConditions>
+        <addColumn schemaName="tablegame" tableName="inventory">
+            <column name="created_at" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <comment>>добавление аудита для табицы inventory</comment>
+    </changeSet>
+
+    <changeSet id="6" author="Igor Nemykin">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists schemaName="tablegame" tableName="item" columnName="created_at"/>
+                <columnExists schemaName="tablegame" tableName="item" columnName="updated_at"/>
+            </not>
+        </preConditions>
+        <addColumn schemaName="tablegame" tableName="item">
+            <column name="created_at" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <comment>>добавление аудита для табицы item</comment>
+    </changeSet>
+
+    <changeSet id="7" author="Igor Nemykin">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists schemaName="tablegame" tableName="item_and_inventory" columnName="created_at"/>
+                <columnExists schemaName="tablegame" tableName="item_and_inventory" columnName="updated_at"/>
+            </not>
+        </preConditions>
+        <addColumn schemaName="tablegame" tableName="item_and_inventory">
+            <column name="created_at" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <comment>>добавление аудита для табицы item_and_inventory</comment>
+    </changeSet>
+
+    <changeSet id="8" author="Igor Nemykin">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists schemaName="tablegame" tableName="user_role_and_status" columnName="created_at"/>
+                <columnExists schemaName="tablegame" tableName="user_role_and_status" columnName="updated_at"/>
+            </not>
+        </preConditions>
+        <addColumn schemaName="tablegame" tableName="user_role_and_status">
+            <column name="created_at" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <comment>>добавление аудита для табицы user_role_and_status</comment>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <springProperty name="LOG_PATH" source="logging.appenders.file.path" defaultValue="logs"/>
+    <springProperty scope="context" name="ASPECT_PATH" source="aspect.path" defaultValue="${LOG_PATH}/aspect"/>
+    <springProperty scope="context" name="ASPECT_NAME" source="aspect.logName" defaultValue="aspect"/>
+    <springProperty scope="context" name="MAX_HISTORY" source="aspect.maxHistory" defaultValue="300"/>
+    <springProperty scope="context" name="DB_URL" source="spring.datasource.url"/>
+    <springProperty scope="context" name="DB_USERNAME" source="spring.datasource.username"/>
+    <springProperty scope="context" name="DB_PASSWORD" source="spring.datasource.password"/>
+    <springProperty scope="context" name="DB_DRIVER_CLASS_NAME" source="spring.datasource.driverClassName"/>
+
+    <property name="ASPECT_ARCHIVE" value="${ASPECT_PATH}/archive"/>
+
+    <springProperty name="DB_ENABLED" source="aspect.appenders.db.enabled"/>
+    <if condition='p("DB_ENABLED").equals("true")'>
+        <then>
+            <appender name="ASPECT_DB" class="ru.tablegame.aspect.DBAppender">
+                <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+                    <url>${DB_URL}</url>
+                    <user>${DB_USERNAME}</user>
+                    <password>${DB_PASSWORD}</password>
+                    <driverClass>${DB_DRIVER_CLASS_NAME}</driverClass>
+                </connectionSource>
+            </appender>
+
+            <logger name="ru.tablegame.aspect.service.AspectService" level="DEBUG" additivity="false">
+                <appender-ref ref="ASPECT_DB"/>
+            </logger>
+        </then>
+        <else>
+            <appender name="ASPECT_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                    <Pattern>%msg%n</Pattern>
+                    <charset>UTF-8</charset>
+                </encoder>
+
+                <file>${ASPECT_PATH}/${ASPECT_NAME}.csv</file>
+
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <fileNamePattern>${ASPECT_ARCHIVE}/${ASPECT_NAME}.%d{yyyy-MM-dd}.csv</fileNamePattern>
+                    <maxHistory>${MAX_HISTORY}</maxHistory>
+                </rollingPolicy>
+            </appender>
+
+            <logger name="ru.tablegame.aspect.service.AspectService" level="DEBUG" additivity="false">
+                <appender-ref ref="ASPECT_FILE"/>
+            </logger>
+        </else>
+    </if>
+
+    <springProperty name="CONSOLE_ENABLED" source="logging.appenders.console.enabled"/>
+    <if condition='p("CONSOLE_ENABLED").equals("true")'>
+        <then>
+            <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+                <encoder>
+                    <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+                    <charset>UTF-8</charset>
+                </encoder>
+            </appender>
+        </then>
+    </if>
+
+    <springProperty name="FILE_ENABLED" source="logging.appenders.file.enabled"/>
+    <springProperty scope="context" name="FILE_NAME" source="logging.appenders.file.logName" defaultValue="investment"/>
+    <if condition='p("FILE_ENABLED").equals("true")'>
+        <then>
+            <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <encoder>
+                    <pattern>${FILE_LOG_PATTERN}</pattern>
+                    <charset>UTF-8</charset>
+                </encoder>
+
+                <file>${LOG_PATH}/${FILE_NAME}.csv</file>
+
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <fileNamePattern>${LOG_PATH}/${FILE_NAME}.%d{yyyy-MM-dd}.log</fileNamePattern>
+                    <maxHistory>${MAX_HISTORY}</maxHistory>
+                </rollingPolicy>
+            </appender>
+        </then>
+    </if>
+
+    <root level="INFO">
+        <if condition='p("CONSOLE_ENABLED").equals("true")'>
+            <then>
+                <appender-ref ref="console"/>
+            </then>
+        </if>
+
+        <if condition='p("FILE_ENABLED").equals("true")'>
+            <then>
+                <appender-ref ref="file"/>
+            </then>
+        </if>
+    </root>
+
+</configuration>

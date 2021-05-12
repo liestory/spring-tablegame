@@ -1,0 +1,52 @@
+server:
+  port: ${APP_PORT:8081}
+  servlet:
+    session:
+      cookie:
+        http-only: true
+    context-path: /table-game-auth
+    application-display-name: table-game-auth
+  tomcat:
+    max-connections: 1000
+    accept-count: 100
+    connection-timeout: 30000
+
+spring:
+  application:
+    name: table-game
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    hikari:
+      connection-timeout: 30000
+      maximum-pool-size: 10
+  liquibase:
+    enabled: true
+    change-log: classpath:/changelog/changelog-master.xml
+
+logging:
+  level:
+    ROOT: DEBUG
+    ru.tablegame: DEBUG
+    org.springframework: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health, metrics
+  metrics:
+    export:
+      atlas:
+        enabled: true
+
+threadPool:
+  corePoolSize: 4
+  maxPoolSize: 8
+
+token:
+  key: uEGGTVVtLggFTizCsMtwOJnRhjaQ2BMUQhcYgfPxCC7=
+  time: 360000
+
+audit:
+  service: console

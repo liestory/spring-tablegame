@@ -1,0 +1,26 @@
+springBoot {
+    buildInfo()
+}
+
+bootJar {
+    enabled = false
+}
+
+dependencies {
+    implementation project(":table-game-model")
+    implementation deps."spring-webflux"
+
+    implementation deps."commons-lang3"
+    implementation deps."validation-api"
+    implementation deps."swagger-annotations"
+
+    implementation 'org.projectlombok:lombok:1.18.16'
+
+    annotationProcessor 'org.projectlombok:lombok:1.18.16'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+}
+
+jar {
+    enabled = true
+}

@@ -1,0 +1,34 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet id="1" author="Igor Nemykin">
+        <preConditions>
+            <not>
+                <tableExists schemaName="tablegame" tableName="inventory"/>
+            </not>
+        </preConditions>
+
+        <createTable schemaName="tablegame"
+                     tableName="inventory"
+                     remarks="Таблица предметов существующих в игре">
+            <column name="id" type="uuid"
+                    remarks="Идентификатор записи">
+                <constraints primaryKey="true"
+                             primaryKeyName="inventory_pk"
+                             nullable="false"/>
+            </column>
+
+            <column name="countSlots" type="integer" remarks="колличество слотов в инвенторе">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="weightMax" type="integer" remarks="Максимально вместимый вес в инвентарь">
+                <constraints nullable="false"/>
+            </column>
+
+
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

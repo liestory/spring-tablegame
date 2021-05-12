@@ -1,0 +1,16 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+
+    <include file="v.1.2_01_rename_columns.xml" relativeToChangelogFile="true"/>
+    <include file="v.1.2_03_delete_columns.xml" relativeToChangelogFile="true"/>
+    <include file="v.1.2_04_drop_nullable_columns.xml" relativeToChangelogFile="true"/>
+    <include file="v.1.2_05_add_constraints_unique.xml" relativeToChangelogFile="true"/>
+    <include file="v.1.2_06__delete_foreign_key_constraints.xml" relativeToChangelogFile="true"/>
+    <include file="v.1.2_07_modify_type_of_columns.xml" relativeToChangelogFile="true"/>
+    <include file="v.1.2_08_delete_columns.xml" relativeToChangelogFile="true"/>
+
+</databaseChangeLog>

@@ -1,0 +1,54 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="1" author="Igor Nemykin">
+        <preConditions>
+            <foreignKeyConstraintExists schemaName="tablegame"
+                                        foreignKeyTableName="character"
+                                        foreignKeyName="user_fk"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableSchemaName="tablegame"
+                                  baseTableName="character"
+                                  constraintName="user_fk"/>
+        <comment>удаление связки таблицы character и юзер</comment>
+    </changeSet>
+
+    <changeSet id="2" author="Igor Nemykin">
+        <preConditions>
+            <foreignKeyConstraintExists schemaName="tablegame"
+                                        foreignKeyTableName="user_role_and_status"
+                                        foreignKeyName="user_fk"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableSchemaName="tablegame"
+                                  baseTableName="user_role_and_status"
+                                  constraintName="user_fk"/>
+        <comment>удаление связки таблицы user_role_and_status и юзер</comment>
+    </changeSet>
+
+    <changeSet id="3" author="Igor Nemykin">
+        <preConditions>
+            <foreignKeyConstraintExists schemaName="auth"
+                                        foreignKeyTableName="user"
+                                        foreignKeyName="game_fk"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableSchemaName="auth"
+                                  baseTableName="user"
+                                  constraintName="game_fk"/>
+        <comment>удаление связки таблицы user и game</comment>
+    </changeSet>
+
+    <changeSet id="3" author="Igor Nemykin">
+        <preConditions>
+            <foreignKeyConstraintExists schemaName="auth"
+                                        foreignKeyTableName="user"
+                                        foreignKeyName="game_fk"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableSchemaName="auth"
+                                  baseTableName="user"
+                                  constraintName="game_fk"/>
+        <comment>удаление связки таблицы user и game</comment>
+    </changeSet>
+</databaseChangeLog>

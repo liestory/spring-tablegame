@@ -1,0 +1,29 @@
+springBoot {
+    buildInfo()
+}
+
+bootJar {
+    enabled = false
+}
+
+
+dependencies {
+    implementation project(":table-game-audit")
+    implementation project(":table-game-model")
+    implementation project(":table-game-auth-model")
+    implementation project(":table-game-auth-api")
+
+    implementation deps."spring-boot-starter-web"
+    implementation deps."spring-boot-starter-actuator"
+
+    implementation deps."spring-security"
+
+    implementation deps."jjwt-api"
+    implementation deps."jjwt-impl"
+    implementation deps."jjwt-orgjson"
+}
+
+
+jar {
+    enabled = true
+}
